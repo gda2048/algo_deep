@@ -1,0 +1,62 @@
+body{
+	background: url(/static/image/code.jpg); 
+	color:black;
+	font-size:30px;
+	text-align:center;
+	font-size: 25px;
+}
+
+.sup{
+	font-size:12px;
+	color: grey;
+}
+
+
+
+#footer {
+    position: fixed; /* Фиксированное положение */
+    left: 0; bottom: 0; /* Левый нижний угол */
+    padding: 10px; /* Поля вокруг текста */
+    background: #e8edff; /* Цвет фона */
+	opacity: 0.9;
+    width: 100%; /* Ширина слоя */
+}
+
+
+#roof {
+	color: blue;
+	opacity: 0.9;
+    position: fixed; /* Фиксированное положение */
+    left: 0; top: 0; /* Левый нижний угол */
+    padding: 10px; /* Поля вокруг текста */
+    background: #e8edff; /* Цвет фона */
+    width: 100%; /* Ширина слоя */
+}
+
+#center {
+	overflow:auto;
+	max-height:480px;
+	overflow:scroll;
+    opacity: 0.9;
+	position: fixed; /* Фиксированное положение */
+    left: 0; top: 200px; /* Левый нижний угол */
+	margin-top:50px;
+	padding: 10px; /* Поля вокруг текста */
+    background: #e8edff; /* Цвет фона */
+    width: 100%; /* Ширина слоя */
+}
+
+.siz{
+	font-weight:bold;
+	color: blue;
+	font-size:30px;
+	width: 10%;
+}
+
+.field{
+	color: red;
+	text-align: center;
+	font-size: 20px;
+	width:20%;
+	height:30px;
+}

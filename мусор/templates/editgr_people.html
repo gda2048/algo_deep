@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8" />
+	<link rel="stylesheet" href="{% static 'css/checkin.css' %}" />
+    <title>Изменить группу</title>
+</head>
+<body class="center" vlink="blue" link="blue">
+	<div id="roof" style="z-index:10;">
+	<div class="alert" vlink="green" link="green">
+	<a href="{% url 'index' %}" ><p>На главную</p> </a>
+	<a href="{% url 'group_add' %}"><p>К списку групп</p> </a>
+	</div>
+	</div>
+    <div id="roof" style="max-height:380px; margin-top:2%; color:black;">
+	<h2>Список студентов группы {{name}}</h2>
+    
+	<table>
+        <thead class="blue">
+		<th>Id</th><th>Фамилия <a href="order/pe_surname">⇧⇧⇧</a>|<a href="order/pe_surnamed">⇩⇩⇩</a></th>
+		<th>Имя <a href="order/pe_name">⇧⇧⇧</a>|<a href="order/pe_named">⇩⇩⇩</a></th>
+		<th>Отчество</th>
+		<th>Email</th>
+		<th>Логин <a href="order/pe_login">⇧⇧⇧</a>|<a href="order/pe_logind">⇩⇩⇩</a></th>
+		<th>Cтатус</th>
+		<th>Родился <a href="order/pe_birthdate">⇧⇧⇧</a>|<a href="order/pe_birthdated">⇩⇩⇩</a> </th>
+		<th>Регистрация <a href="order/pe_todaydate">⇧⇧⇧</a>|<a href="order/pe_todaydated">⇩⇩⇩</a></th>
+		<th></th>
+		</thead>        
+		{% for person in group %}
+        <tr>
+            <td>{{ person.pe_id }}</td>
+            <td>{{ person.pe_surname }}</td>
+			<td>{{ person.pe_name }}</td>
+			<td>{{ person.pe_patronymic }}</td>
+			<td>{{ person.pe_email }}</td>
+			<td>{{ person.pe_login }}</td>
+			<td>{{ person.pe_status }}</td>
+			<td>{{ person.pe_birthdate }}</td>
+            <td>{{ person.pe_todaydate }}</td>
+			<td><a href="del/{{person.pe_id}}/">Удалить студента из группы</a> </a></td>
+        </tr>
+    
+		{% endfor %}
+    </table>
+	
+	
+	</div>
+	<div id="center">
+
+	<h2>Список студентов вне группы {{name}}</h2>
+    <table>
+        <thead class="blue">
+		<th>Id</th><th>Фамилия <a href="order/pe_surname">⇧⇧⇧</a>|<a href="order/pe_surnamed">⇩⇩⇩</a></th>
+		<th>Имя <a href="order/pe_name">⇧⇧⇧</a>|<a href="order/pe_named">⇩⇩⇩</a></th>
+		<th>Отчество</th>
+		<th>Email</th>
+		<th>Логин <a href="order/pe_login">⇧⇧⇧</a>|<a href="order/pe_logind">⇩⇩⇩</a></th>
+		<th>Cтатус</th>
+		<th>Родился <a href="order/pe_birthdate">⇧⇧⇧</a>|<a href="order/pe_birthdated">⇩⇩⇩</a> </th>
+		<th>Регистрация <a href="order/pe_todaydate">⇧⇧⇧</a>|<a href="order/pe_todaydated">⇩⇩⇩</a></th>
+		<th></th>
+		</thead>        
+		
+		{% for person in people %}
+        <tr>
+            <td>{{ person.pe_id }}</td>
+            <td>{{ person.pe_surname }}</td>
+			<td>{{ person.pe_name }}</td>
+			<td>{{ person.pe_patronymic }}</td>
+			<td>{{ person.pe_email }}</td>
+			<td>{{ person.pe_login }}</td>
+			<td>{{ person.pe_status }}</td>
+			<td>{{ person.pe_birthdate }}</td>
+            <td>{{ person.pe_todaydate }}</td>
+			<td><a href="add/{{person.pe_id}}/">Добавить студента в группу</a> </a></td>
+        </tr>
+    
+		{% endfor %}
+    	
+	</table>
+	
+	</div>
+</body>
+</html>

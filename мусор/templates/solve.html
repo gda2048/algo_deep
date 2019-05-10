@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8" />
+	<link rel="stylesheet" href="{% static 'css/checkin.css' %}" />
+    <title>Решение</title>
+</head>
+<body class="center" vlink="blue" link="blue">
+	<div id="roof">
+	<h3 class="red">Не выходите с этой страницы и не обновляйте ее, пока не ответите на вопросы!<h3>
+	<p>Дан массив: {{ data }} и мы будем его сортировать</p>
+	<form method="POST" action= "{{pr_id}}/createsolving/">
+		{% csrf_token %}
+		<p>{{first.question}}</p>
+        {% for choice in first.test %}
+			<input type="radio" name="choice1"  value="{{ choice }}">
+			<label>{{ choice }}</label><br>
+		{% endfor %}
+		
+		<p>{{second.question}}</p>
+        {% for choice in second.test %}
+			<input type="radio" name="choice2"  value="{{ choice }}">
+			<label>{{ choice }}</label><br>
+		{% endfor %}
+		<div style="display:none">
+		<input type="text" name="ffirst"  value="{{first.answer}}">	
+		<input type="text" name="fsecond"  value="{{second.answer}}">
+		</div>
+		<input type="submit" value="Сохранить" class="si">
+    </form>
+	</div>
+</body>
+</body>
+</html>

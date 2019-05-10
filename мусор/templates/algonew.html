@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8" />
+	<link rel="stylesheet" href="{% static 'css/checkin.css' %}" />
+    <title>Алгоритмы</title>
+</head>
+<body vlink="blue" link="blue" class="center">
+	<div id="roof">
+	<div class="alert" vlink="green" link="green"><a href="{% url 'index' %}" ><p>На главную</p> </a></div>
+	<form method="POST" action="createalgo/">
+        {% csrf_token %}
+        <p>
+            <label>Введите тип алгоритма</label><br>
+            <input type="text" name="type" class="field" />
+        </p>
+        <p>
+            <label>Введите название алгоритма</label><br>
+            <input type="text" name="name" class="field"/>
+        </p>
+		<p>
+            <label>Введите комментарий</label><br>
+            <input type="text" name="comment" class="field" />
+        </p>
+		<p>
+            <label>Введите ccылку на теорию</label><br>
+            <input type="text" name="theory" class="field"/>
+        </p>
+		<p>
+            <label>Введите ссылку на визуализацию</label><br>
+            <input type="text" name="visualization" class="field"/>
+        </p>
+		<input type="submit" value="Сохранить" class="si" >
+    </form>
+	</div>
+	<div id="center">
+	<h2>Список пользователей</h2>
+    <table>
+        <thead>
+			<th>Id</th>
+			<th>Тип </th>
+			<th>Название <a href="algonew/order/al_name">⇧⇧⇧</a>|<a href="algonew/order/al_named">⇩⇩⇩</a></th>
+			<th>Визуализация</th>
+			<th>Теория</th>
+			<th>Комментарий</th>
+			<th></th>
+		</thead>
+        {% for alg in algo %}
+        <tr>
+            <td>{{ alg.al_id }}</td>
+            <td>{{ alg.al_type }}</td>
+			<td>{{ alg.al_name }}</td>
+			<td>
+			{% if alg.al_visualization %}
+			<a href="{{ alg.al_visualization }}">{{ alg.al_name }}</a>
+			{% endif %}
+			</td>
+			<td>
+			{% if alg.al_theory %}
+			<a href="{{ alg.al_theory }}">{{ alg.al_name }}</a>
+			{% endif %}
+			</td>
+			<td>{{ alg.al_comment }}</td>
+			
+			<td><a href="editalgo/{{alg.al_id}}">Изменить</a> | <a href="deletealgo/{{alg.al_id}}">Удалить</a></td>
+        </tr>
+    
+		{% endfor %}
+    </table>
+	</div>
+</body>
+</html>

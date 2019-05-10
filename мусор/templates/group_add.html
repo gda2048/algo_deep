@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8" />
+	<link rel="stylesheet" href="{% static 'css/checkin.css' %}" />
+    <title>Группы</title>
+</head>
+<body class="center" vlink="blue" link="blue">
+	<div id="roof">
+	<div class="alert" vlink="green" link="green"><a href="{% url 'index' %}" ><p>На главную</p> </a></div>
+    <h2>Создать новую группу</h2>
+    <form method="POST" action="creategroup/">
+        {% csrf_token %}
+        <p>	
+            <label>Введите название группы</label><br>
+            <input type="text" name="name" class="field"/>
+        </p>
+	    <input type="submit" value="Сохранить" class="si">
+    </form>
+	</div>
+	<div id="center">
+	<h2>Список Групп</h2>
+    <table>
+        <thead><th>Название  <a href="order/gr_name">⇧⇧⇧</a>|<a href="order/gr_named">⇩⇩⇩</a></th><th></th></thead>
+        {% for gr in group %}
+        <tr>
+    		<td><a href="editgr_people/{{gr.gr_id}}/">{{ gr.gr_name }}</a></td>
+    		<td><a href="editgroup/{{gr.gr_id}}">Изменить название</a> | <a href="deletegroup/{{gr.gr_id}}">Удалить</a></td>
+	    </tr>
+		{% endfor %}
+    </table>
+	</div>
+</body>
+</html>

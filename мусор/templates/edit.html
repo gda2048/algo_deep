@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8" />
+	<link rel="stylesheet" href="{% static 'css/checkin.css' %}" />
+    <title>Изменить профиль</title>
+</head>
+<body class="center" vlink="blue" link="blue">
+	<div id="roof">
+    <form method="POST">
+        {% csrf_token %}
+        <p>
+            <label>Введите имя</label><br>
+            <input class="field" type="text" name="name" value="{{person.pe_name}}" />
+        </p>
+		<p>
+            <label>Введите фамилию</label><br>
+            <input class="field" type="text" name="surname" value="{{person.pe_surname}}"/>
+        </p>
+		<p>
+            <label>Введите отчество</label><br>
+            <input class="field" type="text" name="patronymic" value="{{person.pe_patronymic}}"/>
+        </p>
+		<p>
+            <label>Введите email</label><br>
+            <input class="field" type="email" name="email" value="{{person.pe_email}}"/>
+        </p>
+		<p>
+            <label>Введите логин</label><br>
+            <input class="field" type="text" name="login" value="{{person.pe_login}}"/>
+        </p>
+		<p>
+            <label>Введите пароль</label><br>
+            <input class="field" type="password" name="password" value="{{person.pe_password}}"/>
+        </p>
+		<p>
+            <label>Введите дату рождения</label><br>
+            <input class="field" type="date" name="birthdate" value="{{person.pe_birthdate | date:'Y-m-d'}}"/>
+        </p>
+
+        <input type="submit" value="Сохранить" class="si">
+    </form>
+	</div>
+</body>
+</html>

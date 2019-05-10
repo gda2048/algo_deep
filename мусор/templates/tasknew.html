@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8" />
+	<link rel="stylesheet" href="{% static 'css/checkin.css' %}" />
+    <title>Задания</title>
+</head>
+<body class="center" vlink="blue" link="blue">
+	<div id="roof">
+	<div class="alert" vlink="green" link="green"><a href="{% url 'index' %}" ><p>На главную</p> </a></div>
+    <form method="POST" action="createtask/">
+        {% csrf_token %}
+        <p>
+            <label>Введите название задания</label><br>
+            <input type="text" name="name" class="field"/>
+        </p>
+		<p>
+            <label>Введите дату проверки(дедлайн)</label><br>
+            <input type="date" name="checkdate" class="field"/>
+        </p>
+		<p>
+            <label>На какую тему задание</label><br>
+			
+			<select name="algoname" class="field">
+			{% for alg in algo %}
+				<option>{{ alg.al_id }} {{ alg.al_type }}  {{alg.al_name }}</option>
+			{% endfor %}		
+			</select>
+		</p>
+		<p>
+            <label>Для какой группы задание</label><br>
+			
+			<select name="groupname" class="field">
+			{% for gr in group %}
+				<option>{{ gr.gr_id }} {{gr.gr_name }}</option>
+			{% endfor %}	
+			</select>
+        </p>
+        <input type="submit" value="Сохранить" class="si">
+    </form>
+	</div>
+	<div id="center">
+	<h2>Список заданий</h2>
+    <table id = "tab">
+        <thead>
+		<th>Id</th>
+		<th>Название <a href="tasknew/order/pr_name">⇧⇧⇧</a>|<a href="tasknew/order/pr_named">⇩⇩⇩</a></th>
+		<th>Дедлайн <a href="tasknew/order/pr_checkdate">⇧⇧⇧</a>|<a href="tasknew/order/pr_checkdated">⇩⇩⇩</a></th>
+		<th>
+		<select id = "selection" onchange="sh(this, true)" class="center">
+			<option></option>
+			{% for el in algo %}
+			<option>{{ el.al_name }}</option>
+			{% endfor %}
+		</select>
+		
+		</th>
+		<th>
+		<select id = "select_" onchange="show(this, true)" class="center">
+			<option></option>
+			{% for el in group %}
+			<option>{{el.gr_name}}</option>
+			{% endfor %}
+		</select>
+		</th>
+		<th></th></thead>
+        {% for tsk in task %}
+        <tr id = "{{forloop.counter}}">
+            <td> {{ tsk.pr_id }}</td>
+            <td> {{ tsk.pr_name }}</td>
+			{% if tsk.is_past_due %}
+			<td class="red"> Время вышло</td>
+			{% else %}
+				<td> {{ tsk.pr_checkdate }}</td>
+			{% endif %}
+			<td> {{ tsk.pr_algo.al_name }}</td>
+			<td> {{ tsk.pr_group.gr_name }}</td>
+			
+			<td><a href="edittask/{{tsk.pr_id}}/">Изменить</a> | <a href="deletetask/{{tsk.pr_id}}/">Удалить</a></td>
+        </tr>
+    
+		{% endfor %}
+    </table>
+	</div>
+	<script>
+		el1 = document.getElementById("select_");
+		el2 = document.getElementById("selection");
+		function sh(el, bool){
+			var table = document.getElementById("tab");
+			var val = el.options[el.selectedIndex].innerHTML;
+			if (bool){
+				el1.selectedIndex = 0
+				show(el1, false)
+			}
+			for (var i=1;i<table.rows.length;i++){
+				var res = table.rows[i].cells[3].innerHTML;
+				if (res.split(' ').join('') != val.split(' ').join('') && val!=''){
+					table.rows[i].style.display="none";
+				}
+				else{
+					table.rows[i].style.display="table-row";
+				}
+			}	
+		}
+		
+		function show(el, bool){
+			var table = document.getElementById("tab");
+			if (bool){
+				el2.selectedIndex = 0
+				sh(el2, false)
+			}
+			var val = el.options[el.selectedIndex].innerHTML;
+			for (var i=1;i<table.rows.length;i++){
+				var res = table.rows[i].cells[4].innerHTML;
+				if (res.split(' ').join('') != val.split(' ').join('') && val!=''){
+					table.rows[i].style.display="none";
+				}
+				else{
+					table.rows[i].style.display="table-row";
+				}
+			}
+			
+			
+		}
+	</script>
+</body>
+</html>

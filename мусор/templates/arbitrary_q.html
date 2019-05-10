@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8" />
+	<link rel="stylesheet" href="{% static 'css/checkin.css' %}" />
+    <title>Произвольный Запрос</title>
+</head>
+<body  vlink="blue" link="blue">
+	<div id="roof" >
+	<div class="alert" vlink="green" link="green"><a href="{% url 'index' %}" ><p>На главную</p> </a></div>
+    
+	<form method="POST" action="/arbitrary_q/" >
+        {% csrf_token %}
+        <p style="margin-top:3%">	
+            <label><div class="center" style="font-size:20px">Введите SQL-Запрос</div></label><br>
+            <textarea rows="10" name="name" width="70" class="bigarea">{{ person.pe_query }}</textarea>
+        </p>
+	    <input type="submit" value="Получить результат" class="si">
+    </form>
+	<br>
+	<div style = "position: fixed; top:300px; left:1300px; ">
+	<form method="POST" action="/arbitrary_q/" >
+        {% csrf_token %}
+        <div style="display:none;">	
+            <label><div class="center" style="font-size:20px">Введите SQL-Запрос</div></label><br>
+            <textarea rows="10" name="name" width="70" class="bigarea">Select gr_name as Группа ,  count(CASE WHEN so_res=0 THEN 1 ELSE NULL END) AS 'Неправильное решение',  count(CASE WHEN so_res=5 THEN 1 ELSE NULL END) AS 'Половина решения', count(CASE WHEN so_res=10 THEN 1 ELSE NULL END) AS 'Полное решение' from algo_learn_solving inner join algo_learn_student on st_id=so_student_id inner join algo_learn_person on st_profile_id=pe_id  inner join algo_learn_problem on so_problem_id=pr_id inner join algo_learn_group on pr_group_id=gr_id Group by gr_name</textarea>
+        </div>
+	    <input type="submit" value="Статистика по решениям" class="si" style="width:400px">
+    </form>
+	
+	</div>
+	
+	<div style = "color:red; font-size:30px; position: fixed; top:0px; left:1300px; ">
+	Отчеты
+	</div>
+	
+	<div style = "position: fixed; top:50px; left:1300px; ">
+	<form method="POST" action="/report1/" >
+        {% csrf_token %}
+        <input type="submit" value="Отчет по группам" class="si" style="width:400px">
+    </form>
+	</div>
+	
+	<div style = "position: fixed; top:100px; left:1300px; ">
+	<form method="POST" action="/report2/" >
+        {% csrf_token %}
+        <input type="submit" value="Отчет по студентам" class="si" style="width:400px">
+    </form>
+	</div>
+	
+	<div style = "color:red; font-size:30px; position: fixed; top:150px; left:1300px; ">
+	Запросы
+	</div>
+	
+	
+	<div style = "position: fixed; top:250px; left:1300px; ">
+	<form method="POST" action="/arbitrary_q/" >
+        {% csrf_token %}
+        <div style="display:none;">	
+            <label><div class="center" style="font-size:20px">Введите SQL-Запрос</div></label><br>
+            <textarea rows="10" name="name" width="70" class="bigarea">Select pe_name as 'Имя',pe_surname as 'Фамилия', pe_login as 'Логин', st_rate as 'Общий балл'
+from algo_learn_person inner join algo_learn_student
+on algo_learn_person.pe_id=algo_learn_student.st_profile_id Order By st_rate Desc</textarea>
+        </div>
+	    <input type="submit" value="Рейтинг студентов" class="si" style="width:400px">
+    </form>
+	
+	</div>
+	<div style = "position: fixed; top:200px; left:1300px; ">
+	<form method="POST" action="/arbitrary_q/" >
+        {% csrf_token %}
+        <div style="display:none;">	
+            <label><div class="center" style="font-size:20px">Введите SQL-Запрос</div></label><br>
+            <textarea rows="10" name="name" width="70" class="bigarea">Select gr_name as 'Название группы', round(avg(st_rate)) as Среднее from ((algo_learn_group_gr_students  inner join algo_learn_student on
+algo_learn_group_gr_students.student_id=algo_learn_student.st_id) A inner join algo_learn_person B on A.st_profile_id = B.pe_id) C inner join algo_learn_group D on
+D.gr_id = C.group_id Group By gr_name Order by round(avg(st_rate)) DESC
+			
+			</textarea>
+        </div>
+	    <input type="submit" value="Средний балл" class="si" style="width:400px">
+    </form>
+	
+	</div>
+	
+	
+	</div>
+	<div id="center" style="top:540px">
+	{% if res %}
+	<div class="center">
+		{% for el in res_name %}
+				<div class="divTableCell blue">{{ el }}</div> 
+		{% endfor %}
+	</div>
+	
+	<div class="center">
+		{% for row in res %}
+			<div>
+			{% for el in row %}			
+					<div class="divTableCell">{{ el }}</div> 
+			{% endfor %}	
+			</div>
+		{% endfor %}
+	</div>
+	{% else %}
+	<div class="red">Запрос не верен</div>
+	{% endif %}
+	</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+<head>	
+    <meta charset="utf-8" />
+    <title>Главная</title>
+</head>
+<body vlink="blue" link="blue">
+	<div id = "roof">
+		{% if request.user.is_authenticated %}
+		<p>Добро пожаловать, {{ status }} {{ request.user.first_name }}</p>
+	</div>
+	
+	
+	<div id = "center">
+	{% if status == "Преподаватель" %}
+		<a href="algonew/"><p>Алгоритмы</p> </a>
+		<a href="tasknew/"><p>Задания</p> </a>
+		<a href="group_add"><p>Группы</p> </a>
+		<br>
+
+		<hr align="left"  size="4" color="grey" />
+		<p><a href="arbitrary_q/">Получение статистики </a> <sup class="sup">*Для продвинутых пользователей</sup> </p>
+	<form method="POST" action="search/">
+		{% csrf_token %}
+		<input type="text" name="word" class="field" placeholder="Поиск..">	
+		<input type="submit" value="Поиск" class="siz" >
+    </form>
+
+	{% endif %}
+	{% if status == "Студент" %}
+		<a href="group_me"><p>Мои группы</p> </a>
+	{% endif %}
+	</div>
+	<div id = "footer">
+	<a href="/log_out">Выйти</a><br>
+	<a href="edit/{{person.pe_id}}">Изменить</a> | <a href="delete/{{person.pe_id}}">Удалить аккаунт</a>
+	</div>
+	{% else %}
+    <p>Пожалуйста, войдите в систему, чтобы начать работать.</p>
+    <div>
+	<form method="POST" action="log_in/">
+        {% csrf_token %}
+        <p>
+            <label>Введите email&nbsp</label>
+            <input type="email" name="email" class="field"/>
+        </p>
+		<p>
+            <label>Введите логин&nbsp</label>
+            <input type="text" name="login" class="field"/>
+        </p>
+		<p>
+            <label>Введите пароль</label>
+            <input type="password" name="password" class="field"/>
+        </p>
+		
+        <input type="submit" value="Войти" class="siz">
+    </form>
+	</div>
+	<div>
+	<div id = "footer">
+	<a href="checkin.html"><p>Регистрация</p> </a>
+	</div>
+	</div>
+	{% endif %}
+</body>
+</html>

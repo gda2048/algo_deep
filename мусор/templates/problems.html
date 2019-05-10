@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8" />
+	<link rel="stylesheet" href="{% static 'css/checkin.css' %}" />
+    <title>Задания</title>
+</head>
+<body class="container" vlink="blue" link="blue">
+	<div class="alert" vlink="green" link="green">
+		<a href="{% url 'index' %}" ><p>На главную</p> </a>
+		<a href="{% url 'group_me' %}"><p>К списку групп</p> </a>
+	</div>	
+	<div id="center">	
+	<h2>Список заданий группы {{name}}</h2>
+	<p class = "red">Внимание! На решение задания дается только одна попытка! <br> Максимальная оценка - 10 баллов</p>
+    <table id="tab">
+        <thead class="blue">
+		<th>Id</th>
+		<th>Название <a href="order/pr_name">⇧⇧⇧</a>|<a href="order/pr_named">⇩⇩⇩</a></th>
+		<th>
+			<select id = "selection" onchange="show(this, true)" class="center">
+				<option></option>
+				{% for el in algo %}
+					<option>{{ el.al_name }}</option>
+				{% endfor %}
+			</select>
+		</th>
+		<th>Дедлайн <a href="order/pr_checkdate">⇧⇧⇧</a>|<a href="order/pr_checkdated">⇩⇩⇩</a></th>
+		<th>Результат</th>
+		<th>Статус</th>
+		</thead>        
+		{% for problem in problems %}
+        {% if problem.is_past_due %}
+		<tr>		
+			<td> {{ problem.pr_id }}</td>
+            <td>{{ problem.pr_name }}</td>
+			<td>{{ problem.pr_algo.al_name	 }}</td>
+			<td>{{ problem.pr_checkdate }}</td>
+			{% with forloop.counter as x %}
+			{% for re in res %}
+			{% if forloop.counter ==  x %}
+			{% if  re == -1 %}
+			<td> --- </td>
+			{% elif re == 1 %}
+			<td> Алгоритм в разработке </td>
+			<td class="green">Решено</td>
+			
+			{% else %}
+			<td> {{ re }} </td>
+			{% endif %}
+			{% endif %}
+			{% endfor %}
+			{% endwith %}
+			<td class="red">Время вышло</td>
+		</tr>
+		{% else %}
+        <tr>		
+			<td>{{ problem.pr_id }}</td>
+            <td>{{ problem.pr_name }}</td>
+			<td>{{ problem.pr_algo.al_name	 }}</td>
+			<td>{{ problem.pr_checkdate }}</td>
+			{% with forloop.counter as x %}
+			{% for re in res %}
+			{% if forloop.counter ==  x %}
+			{% if  re == -1 %}
+			<td> --- </td>
+			<td><a href="solve/{{problem.pr_id}}">Решить</a> </a></td>
+			{% elif re == 1 %}
+			<td> Алгоритм в разработке </td>
+			<td class="green">Решено</td>
+			
+			{% else %}
+			<td> {{ re }} </td>
+			<td class="green">Решено</td>
+			{% endif %}
+			{% endif %}
+			{% endfor %}
+			{% endwith %}
+			
+	    </tr>
+		{% endif %}
+		{% endfor %}
+    </table>
+	</div>
+	<script>
+		
+		
+		function show(el, bool){
+			var table = document.getElementById("tab");
+		
+			var val = el.options[el.selectedIndex].innerHTML;
+			for (var i=1;i<table.rows.length;i++){
+				var res = table.rows[i].cells[2].innerHTML;
+				if (res.split(' ').join('') != val.split(' ').join('') && val!=''){
+					table.rows[i].style.display="none";
+				}
+				else{
+					table.rows[i].style.display="table-row";
+				}
+			}
+			
+			
+		}
+	</script>
+</body>
+</html>

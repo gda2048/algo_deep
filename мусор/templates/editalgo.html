@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8" />
+	<link rel="stylesheet" href="{% static 'css/checkin.css' %}" />
+    <title>Изменить алгоритм</title>
+</head>
+<body class="center" vlink="blue" link="blue">
+    <div id="roof">
+	<form method="POST">
+        {% csrf_token %}
+        <p>
+            <label>Введите тип алгоритма</label><br>
+            <input class="field" type="text" name="type" value="{{algo.al_type}}"/>
+        </p>
+        <p>
+            <label>Введите название алгоритма</label><br>
+            <input class="field" type="text" name="name"  value="{{algo.al_name}}" />
+        </p>
+		<p>
+            <label>Введите комментарий</label><br>
+            <input class="field" type="text" name="comment"  value="{{algo.al_comment}}" />
+        </p>
+		<p>
+            <label>Введите ccылку на теорию</label><br>
+            <input class="field" type="text" name="theory"  value="{{algo.al_theory}}" />
+        </p>
+		<p>
+            <label>Введите ссылку на визуализацию</label><br>
+            <input  class="field" type="text" name="visualization"  value="{{algo.al_visualization}}" />
+        </p>
+
+        <input type="submit" value="Сохранить" class="si">
+    </form>
+	</div>
+</body>
+</html>

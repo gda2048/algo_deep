@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8" />
+	<link rel="stylesheet" href="{% static 'css/checkin.css' %}" />
+    <title>Регистрация</title>
+</head>
+<body class="center" vlink="blue" link="blue">
+	<div id="roof">
+	<div class="alert" vlink="green" link="green"><a href="{% url 'index' %}" ><p>На главную</p> </a></div>
+    <form method="POST" action="create/">
+        {% csrf_token %}
+        <p>
+            <label>Введите имя</label><br>
+            <input class="field" type="text" name="name" />
+        </p>
+        <p>
+            <label>Введите фамилию</label><br>
+            <input class="field" type="text" name="surname" />
+        </p>
+		<p>
+            <label>Введите отчество</label><br>
+            <input class="field" type="text" name="patronymic" />
+        </p>
+		<p>
+            <label>Введите email</label><br>
+            <input class="field" type="email" name="email" />
+        </p>
+		<p>
+            <label>Введите логин</label><br>
+            <input class="field" type="text" name="login" />
+        </p>
+		<p>
+            <label>Введите пароль</label><br>
+            <input class="field" type="password" name="password" />
+        </p>
+		<p>
+            <label>Введите дату рождения</label><br>
+            <input class="field" type="date" name="birthdate" />
+        </p>
+		<p>
+            <label>Введите статус</label><br>
+			<select name="status" class="field">
+				  <option>Студент</option>
+				  <option>Преподаватель</option>
+			</select>
+        </p>
+        <input type="submit" value="Сохранить" class="si">
+    </form>
+	</div>	
+	<div id="footer" style="display:none;">	
+	<h2>Список пользователей</h2>
+    <table>
+        <thead><th>Id</th><th>Фамилия</th><th>Имя</th><th>Отчество</th><th>Email</th><th>Логин</th><th>Cтатус</th><th>Дата Рождения</th><th>Дата регистрации</th><th></th></thead>
+        {% for person in people %}
+        <tr>
+            <td>{{ person.pe_id }}</td>
+            <td>{{ person.pe_surname }}</td>
+			<td>{{ person.pe_name }}</td>
+			<td>{{ person.pe_patronymic }}</td>
+			<td>{{ person.pe_email }}</td>
+			<td>{{ person.pe_login }}</td>
+			<td>{{ person.pe_status }}</td>
+			<td>{{ person.pe_birthdate }}</td>
+            <td>{{ person.pe_todaydate }}</td>
+			<td><a href="edit/{{person.pe_id}}">Изменить</a> | <a href="delete/{{person.pe_id}}">Удалить</a></td>
+        </tr>
+	</div>	
+		{% endfor %}
+    </table>
+	
+</body>
+</html>
