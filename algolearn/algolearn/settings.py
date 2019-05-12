@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'api.apps.ApiConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -134,3 +135,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#Email
+
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'algolearn2048@gmail.com'
+EMAIL_HOST_PASSWORD = '+rkjtbv!g@uhd)fm)i)+qhen5&hib*o(8g3e2g2vlpli$poo5a'
+DEFAULT_FROM_EMAIL = 'gda2048'
+DEFAULT_TO_EMAIL = 'gda2048'

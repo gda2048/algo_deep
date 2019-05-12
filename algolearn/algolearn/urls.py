@@ -23,6 +23,7 @@ from api.views import *
 schema_view = get_swagger_view(title='Algolearn API')
 
 urlpatterns = [
+    url(r'^', include('django.contrib.auth.urls')),
     url(r'^$', schema_view),
     path('admin/', admin.site.urls),
     url(r'^api/auth/registration/', include('rest_auth.registration.urls')),
