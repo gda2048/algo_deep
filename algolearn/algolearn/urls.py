@@ -17,11 +17,16 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
 from rest_framework_swagger.views import get_swagger_view
+from api.views import *
+
 
 schema_view = get_swagger_view(title='Algolearn API')
 
 urlpatterns = [
     url(r'^$', schema_view),
     path('admin/', admin.site.urls),
+    url(r'^api/auth/registration/', include('rest_auth.registration.urls')),
     url(r'^api/auth/', include('rest_auth.urls')),
+    url(r'^api/auth/facebook/$', FacebookLogin.as_view(), name='fb_login'),
+    url(r'^api/auth/twitter/$', TwitterLogin.as_view(), name='twitter_login')
 ]

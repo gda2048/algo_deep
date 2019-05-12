@@ -1,8 +1,7 @@
-# algo_deep
+## AlgoLearn
 Better algo_learning system
-
-python 3.7
--------
+----
+#### python3.7
 
 ## to create and activate venv
 ```bash
@@ -23,7 +22,6 @@ pip install -r requirements.txt
 ------------------------------
 
 ### **I am not sharing database now. Create your own one. All this information will be hidden.**
-
 
 
 ## to install postgre
@@ -58,7 +56,7 @@ create database algo_learn_psql owner gda2048;
 --------
 
 ## Create first user (superuser) 
-for using admin panel .../admin/
+for using admin panel _.../admin/_
 ```bash
 python3.7 manage.py createsuperuser
 ```
