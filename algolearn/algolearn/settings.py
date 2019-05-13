@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -47,10 +48,10 @@ INSTALLED_APPS = [
     'allauth.account',
     'rest_auth.registration',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.facebook',
-    'allauth.socialaccount.providers.twitter',
+ #   'allauth.socialaccount.providers.facebook',
+ #   'allauth.socialaccount.providers.twitter',
 ]
-SITE_ID = 1
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -64,10 +65,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'algolearn.urls'
 
+
+TEMPLATES_ROOT = os.path.join(BASE_DIR, "templates")
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_ROOT],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -146,3 +149,24 @@ EMAIL_HOST_USER = 'algolearn2048@gmail.com'
 EMAIL_HOST_PASSWORD = '+rkjtbv!g@uhd)fm)i)+qhen5&hib*o(8g3e2g2vlpli$poo5a'
 DEFAULT_FROM_EMAIL = 'gda2048'
 DEFAULT_TO_EMAIL = 'gda2048'
+
+# django-allauth settings
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = (
+    # default
+    'django.contrib.auth.backends.ModelBackend',
+    # email login
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+# The URL to redirect to after a successful e-mail confirmation, in case no user is logged in.
+# ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = reverse_lazy('account_confirm_complete')
+
+# The URL to redirect to after a successful e-mail confirmation, in case of an authenticated user.
+# Set to None to use settings.LOGIN_REDIRECT_URL.
+# ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = reverse_lazy('account_confirm_complete')
