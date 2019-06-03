@@ -104,3 +104,7 @@ venv.bak/
 .mypy_cache/
 
 \.idea/
+
+frontend-rest/css/
+
+frontend-rest/js/
