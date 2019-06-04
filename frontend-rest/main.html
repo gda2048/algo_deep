@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        .bg-algolearn-navbar{
+            background-color: rgba(36,136,136,1);
+        }
+        .bg-algolearn-red{
+            background-color: rgba(231,71,94,1);
+        }
+        .bg-algolearn-grey{
+            background-color: rgba(230,230,230,1);
+        }
+        .text-algolearn-red{
+            color: rgba(231,71,94,1);
+        }
+        .bg-algolearn-yellow{
+            background-color: rgba(240,216,121,0.7);
+        }
+        .text-algolearn-yellow{
+            color: rgba(240,216,121,1);
+        }
+        .text-algolearn-grey{
+            color: rgba(230,230,230,1);
+        }
+        .font-algolearn-arial{
+            font-family: Arial;
+            font-size: inherit;
+            font-weight: bold;
+        }
+
+
+    </style>
+</head>
+
+<body class="bg-algolearn-grey">
+
+
+
+<div class="min-vh-100 bg-algolearn-yellow container-fluid">
+
+    <nav class="navbar bg-algolearn-navbar sticky-top row">
+    <div class="container-fluid font-algolearn-arial">
+        <a href="#" class="navbar-brand col-12 col-sm-4 col-md-4 col-lg-2">
+            <img class="img-responsive mw-100" src="images/logo.png">
+        </a>
+        <div class="container offset-lg-5 col-lg-2 col-auto text-algolearn-red bg-algolearn-grey rounded-pill text-center">
+            <a class="nav-link">Учиться</a>
+        </div>
+
+        <div class="container col-lg-2 col-auto text-algolearn-grey bg-algolearn-red rounded-pill text-center">
+            <a class="nav-link">Учить</a>
+        </div>
+        <!--
+        change in Учиться offset-lg-4
+        <div class="container col-auto col-lg-1">
+            EN
+        </div>
+        -->
+    </div>
+</nav>
+
+    <div class="jumbotron bg-transparent row my-lg-5">
+        <div class="container-fluid col-md-4 col-12">
+            <h2 class="font-weight-bold">Получите востребованные знания бесплатно</h2>
+            <p class="lead my-1">Лень — естественное состояние программиста, после которого он рождает хороший алгоритм</p>
+            <hr class="my-3">
+            <p class="lead">
+                <a class="btn bg-algolearn-navbar text-algolearn-grey btn-lg" href="#" role="button">Выбрать курс</a>
+            </p>
+        </div>
+        <div class="offset-1 col-4 my-lg-5 d-none d-md-block">
+            <img class="img-responsive mw-100" src="images/main_jumbotron.png">
+        </div>
+
+        <nav id="menu" class="mx-auto">
+            <a class='btn' href='#top'>
+                <img class="img-responsive w-25 h-75" src="images/arrow-down.png">
+            </a>
+        </nav>
+
+    </div>
+</div>
+
+
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+    <div class="carousel-item active">
+          <img class="d-block w-100" src="images/logo.png" alt="First slide">
+    </div>
+    <div class="carousel-item ">
+      <img class="d-block w-100" src="images/logo.png" alt="First slide">
+    </div>
+    <div class="carousel-item">
+        <img class="d-block w-100" src="images/logo.png" alt="First slide">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
+<br>aa
+<br>aa
+<br>aa
+<br>aa
+<br>aa
+<br>aa
+<br>aa
+<br>aa
+<br>aa
+<br>aa
+<br>aa
+<br>aa
+<br>aa
+<br>aa
+<br>aa
+<br>aafdsafsd
+<div id="top"></div>
+
+
+
+
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#menu").on("click","a", function (event) {
+            event.preventDefault();
+            var id  = $(this).attr('href'),
+                top = $(id).offset().top;
+            $('body,html').animate({scrollTop: top}, 1500);
+        });
+    });
+</script>
+
+</body>
+</html>
