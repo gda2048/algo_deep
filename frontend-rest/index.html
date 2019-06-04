@@ -10,10 +10,7 @@
 
   <!-- Demo styles -->
   <style>
-    html, body {
-      position: relative;
-      height: 100%;
-    }
+
     .swiper-container {
       width: 100%;
       height: 100%;
@@ -21,6 +18,7 @@
       margin-right: auto;
     }
     .swiper-slide {
+      height: 500px;
       text-align: center;
       font-size: 18px;
       background: #fff;
@@ -59,10 +57,7 @@
     <div class="swiper-button-prev"></div>
   </div>
 
-  <!-- Swiper JS -->
   <script src="js/swiper.min.js"></script>
-
-  <!-- Initialize Swiper -->
   <script>
     var swiper = new Swiper('.swiper-container', {
       effect: 'coverflow',

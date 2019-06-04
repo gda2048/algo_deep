@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/swiper.min.css" type="text/css">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
@@ -33,6 +35,31 @@
             font-family: Arial;
             font-size: inherit;
             font-weight: bold;
+        }
+        .swiper-container {
+          width: 100%;
+          height: 100%;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .swiper-slide {
+          height: 400px;
+          text-align: center;
+          font-size: 18px;
+          background: #fff;
+          /* Center slide text vertically */
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: -webkit-flex;
+          display: flex;
+          -webkit-box-pack: center;
+          -ms-flex-pack: center;
+          -webkit-justify-content: center;
+          justify-content: center;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          -webkit-align-items: center;
+          align-items: center;
         }
 
 
@@ -89,7 +116,22 @@
 </div>
 
 
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">В телефоне</div>
+      <div class="swiper-slide">нет стрелок</div>
+      <div class="swiper-slide">пальчиком поводи</div>
+      <div class="swiper-slide">круто?</div>
+      <div class="swiper-slide">сам в шоке</div>
+      <div class="swiper-slide">))</div>
 
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- Add Arrows -->
+    <div class="swiper-button-next d-none d-md-block"></div>
+    <div class="swiper-button-prev d-none d-md-block"></div>
+  </div>
 
 
 <br>aa
@@ -115,7 +157,38 @@
 
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-
+<script src="js/swiper.min.js"></script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+      effect: 'coverflow',
+      slidesPerView: 3,
+      spaceBetween: 30,
+      slidesPerGroup: 1,
+      loop: true,
+      loopFillGroupWithBlank: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+        reverseDirection: false, <!-- Помогите -->
+      },
+      coverflowEffect: {
+        rotate: 30,
+        stretch: 0,
+        depth: 100,
+        modifier: 1,
+        slideShadows : true,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        dynamicBullets: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+</script>
 <script type="text/javascript">
     $(document).ready(function(){
         $("#menu").on("click","a", function (event) {
