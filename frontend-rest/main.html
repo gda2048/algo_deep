@@ -118,12 +118,47 @@
 
 <div class="swiper-container">
     <div class="swiper-wrapper">
-      <div class="swiper-slide">В телефоне</div>
-      <div class="swiper-slide">нет стрелок</div>
-      <div class="swiper-slide">пальчиком поводи</div>
-      <div class="swiper-slide">круто?</div>
-      <div class="swiper-slide">сам в шоке</div>
-      <div class="swiper-slide">))</div>
+      <div class="card swiper-slide rounded-pill" style="width: 18rem;">
+          <img class="card-img-top" src="images/logo.png">
+          <div class="card-body">
+            <h5 class="card-title">Python алгоритмы</h5>
+            <p class="card-text">Алгоритмы для начинающих</p>
+            <a href="#" class="btn btn-primary">Начать курс</a>
+          </div>
+      </div>
+      <div class="card swiper-slide rounded-pill" style="width: 18rem;">
+          <img class="card-img-top" src="images/logo.png">
+          <div class="card-body">
+            <h5 class="card-title">Python для начинающих</h5>
+            <p class="card-text">Базовый синтаксис python 3</p>
+            <a href="#" class="btn btn-primary">Начать курс</a>
+          </div>
+      </div>
+      <div class="card swiper-slide rounded-pill" style="width: 18rem;">
+          <img class="card-img-top" src="images/logo.png">
+          <div class="card-body">
+            <h5 class="card-title">Python структуры данных</h5>
+            <p class="card-text">Стек. Очередь. Связный список.</p>
+            <a href="#" class="btn btn-primary">Начать курс</a>
+          </div>
+      </div>
+      <div class="card swiper-slide rounded-pill" style="width: 18rem;">
+          <img class="card-img-top" src="images/logo.png">
+          <div class="card-body">
+            <h5 class="card-title">C++ для олимпиадников</h5>
+            <p class="card-text">Рецепты</p>
+            <a href="#" class="btn btn-primary">Начать курс</a>
+          </div>
+      </div>
+      <div class="card swiper-slide rounded-pill" style="width: 18rem;">
+          <img class="card-img-top" src="images/logo.png">
+          <div class="card-body">
+            <h5 class="card-title">Python для гуманитариев</h5>
+            <p class="card-text">Простой курс для чайников</p>
+            <a href="#" class="btn btn-primary">Начать курс</a>
+          </div>
+      </div>
+
 <div id="top"></div>
     </div>
     <!-- Add Pagination -->
@@ -195,7 +230,7 @@
             event.preventDefault();
             var id  = $(this).attr('href'),
                 top = $(id).offset().top;
-            $('body,html').animate({scrollTop: top}, 5000);
+            $('body,html').animate({scrollTop: top}, 500);
         });
     });
 </script>
