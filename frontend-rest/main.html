@@ -93,7 +93,7 @@
     </div>
 </nav>
 
-    <div class="jumbotron bg-transparent row my-lg-5">
+    <div class="jumbotron bg-transparent row my-lg-3">
         <div class="container-fluid col-md-4 col-12">
             <h2 class="font-weight-bold">Получите востребованные знания бесплатно</h2>
             <p class="lead my-1">Лень — естественное состояние программиста, после которого он рождает хороший алгоритм</p>
@@ -124,7 +124,7 @@
       <div class="swiper-slide">круто?</div>
       <div class="swiper-slide">сам в шоке</div>
       <div class="swiper-slide">))</div>
-
+<div id="top"></div>
     </div>
     <!-- Add Pagination -->
     <div class="swiper-pagination"></div>
@@ -133,8 +133,8 @@
     <div class="swiper-button-prev d-none d-md-block"></div>
   </div>
 
-
 <br>aa
+
 <br>aa
 <br>aa
 <br>aa
@@ -150,7 +150,7 @@
 <br>aa
 <br>aa
 <br>aafdsafsd
-<div id="top"></div>
+
 
 
 
@@ -172,10 +172,10 @@
         reverseDirection: false, <!-- Помогите -->
       },
       coverflowEffect: {
-        rotate: 30,
-        stretch: 0,
-        depth: 100,
-        modifier: 1,
+        rotate: 10,
+        stretch: 2,
+        depth: 150,
+        modifier: 2,
         slideShadows : true,
       },
       pagination: {
@@ -195,7 +195,7 @@
             event.preventDefault();
             var id  = $(this).attr('href'),
                 top = $(id).offset().top;
-            $('body,html').animate({scrollTop: top}, 1500);
+            $('body,html').animate({scrollTop: top}, 5000);
         });
     });
 </script>
