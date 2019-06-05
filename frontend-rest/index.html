@@ -6,87 +6,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
   <!-- Link Swiper's CSS -->
-  <link rel="stylesheet" href="css/swiper.min.css">
+    <link href="css/aos.css" rel="stylesheet">
 
   <!-- Demo styles -->
   <style>
-
-    .swiper-container {
-      width: 100%;
-      height: 100%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .swiper-slide {
-      height: 500px;
-      text-align: center;
-      font-size: 18px;
-      background: #fff;
-      /* Center slide text vertically */
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      -webkit-align-items: center;
-      align-items: center;
-    }
   </style>
 </head>
 <body>
-  <!-- Swiper -->
-  <div class="swiper-container">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">Slide 1</div>
-      <div class="swiper-slide">Slide 2</div>
-      <div class="swiper-slide">Slide 3</div>
-      <div class="swiper-slide">Slide 4</div>
-      <div class="swiper-slide">Slide 5</div>
-      <div class="swiper-slide">Slide 6</div>
+  <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
+  <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
+  <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
+  <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
+  <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
 
-    </div>
-    <!-- Add Pagination -->
-    <div class="swiper-pagination"></div>
-    <!-- Add Arrows -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-  </div>
+  <div style="width: 100px; height: 100px; background-color: blue; margin: 10px;" data-aos="fade-up"></div>
 
-  <script src="js/swiper.min.js"></script>
+
+  <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
+  <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
+  <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
+  <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
+  <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
+  <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
+  <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
+  <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
+  <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
+  <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
+  <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
+  <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
+  <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
+  <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
+  <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
+  <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
+  <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
+  <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
+  <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
+
+
+
+  <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
+<br>
+  <script src="js/aos.js"></script>
   <script>
-    var swiper = new Swiper('.swiper-container', {
-      effect: 'coverflow',
-      slidesPerView: 3,
-      spaceBetween: 30,
-      slidesPerGroup: 1,
-      loop: true,
-      loopFillGroupWithBlank: true,
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-        reverseDirection: true,
-      },
-      coverflowEffect: {
-        rotate: 30,
-        stretch: 0,
-        depth: 100,
-        modifier: 1,
-        slideShadows : true,
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-        dynamicBullets: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
+      AOS.init({
+          // Global settings:
+          disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+          startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+          initClassName: 'aos-init', // class applied after initialization
+          animatedClassName: 'aos-animate', // class applied on animation
+          useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+          disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+          debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+          throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+
+
+          // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+          offset: 120, // offset (in px) from the original trigger point
+          delay: 0, // values from 0 to 3000, with step 50ms
+          duration: 400, // values from 0 to 3000, with step 50ms
+          easing: 'ease', // default easing for AOS animations
+          once: false, // whether animation should happen only once - while scrolling down
+          mirror: false, // whether elements should animate out while scrolling past them
+          anchorPlacement: 'top-center', // defines which position of the element regarding to window should trigger the animation
+
     });
   </script>
 </body>
