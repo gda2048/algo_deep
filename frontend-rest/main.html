@@ -10,103 +10,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
+        .h-20 {
+            height: 20%;
+        }
 
-        .bg-algolearn-grey-transparent{
-            background-color: rgba(230,230,230,0.2);
+        .h-30 {
+            height: 30%;
         }
-        .bg-algolearn-navbar{
-            background-color: rgba(36,136,136,1);
+
+        .bg-algolearn-navbar {
+            background-color: rgba(36, 136, 136, 1);
         }
-        .bg-algolearn-red{
-            background-color: rgba(231,71,94,1);
+
+        .bg-algolearn-red {
+            background-color: rgba(231, 71, 94, 1);
         }
-        .bg-algolearn-grey{
-            background-color: rgba(230,230,230,1);
+
+        .bg-algolearn-grey {
+            background-color: rgba(230, 230, 230, 1);
         }
-        .text-algolearn-red{
-            color: rgba(231,71,94,1);
+
+        .text-algolearn-red {
+            color: rgba(231, 71, 94, 1);
         }
-        .bg-algolearn-yellow{
-            background-color: rgba(240,216,121,0.7);
+
+        .bg-algolearn-yellow {
+            background-color: rgba(240, 216, 121, 0.7);
         }
-        .text-algolearn-yellow{
-            color: rgba(240,216,121,1);
+
+        .text-algolearn-yellow {
+            color: rgba(240, 216, 121, 1);
         }
-        .text-algolearn-grey{
-            color: rgba(230,230,230,1);
+
+        .text-algolearn-grey {
+            color: rgba(230, 230, 230, 1);
         }
-        .font-algolearn-arial{
+
+        .font-algolearn-arial {
             font-family: Arial;
             font-size: inherit;
             font-weight: bold;
         }
+
         .swiper-container {
-          width: 100%;
-          height: 100%;
-          margin-left: auto;
-          margin-right: auto;
+            width: 100%;
+            height: 100%;
+            margin-left: auto;
+            margin-right: auto;
         }
+
         .swiper-slide {
-          height: auto;
-          text-align: center;
-          font-size: 18px;
-          background: #fff;
-          /* Center slide text vertically */
-          display: -webkit-box;
-          display: -ms-flexbox;
-          display: -webkit-flex;
-          display: flex;
-          -webkit-box-pack: center;
-          -ms-flex-pack: center;
-          -webkit-justify-content: center;
-          justify-content: center;
-          -webkit-box-align: center;
-          -ms-flex-align: center;
-          -webkit-align-items: center;
-          align-items: center;
+            height: auto;
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
         }
-        .img-center {
-            margin: 0 auto;
-            padding: 0;
+
+        .btn-border-algolearn-green {
+            border-width: 2px;
+            border-color: rgba(36, 136, 136, 1);
         }
-        .algolearn-bottom{
-            position: absolute;
+
+        .algolearn-bottom {
+            position: relative;
             bottom: 0;
         }
+
     </style>
 </head>
 
 <body class="bg-algolearn-grey">
 
 
-
-<div class="min-vh-100 bg-algolearn-yellow container-fluid">
+<div class="min-vh-200 bg-algolearn-yellow container-fluid">
 
     <nav class="navbar bg-algolearn-navbar sticky-top row">
-    <div class="container-fluid font-algolearn-arial">
-        <a href="#" class="navbar-brand col-12 col-sm-4 col-md-4 col-lg-2">
-            <img class="img-fluid mw-100" src="images/logo.png">
-        </a>
-        <div class="container offset-lg-5 col-lg-2 col-auto text-algolearn-red bg-algolearn-grey rounded-pill text-center">
-            <a class="nav-link">Учиться</a>
-        </div>
+        <div class="container-fluid font-algolearn-arial">
+            <a href="#" class="navbar-brand col-12 col-sm-4 col-md-4 col-lg-2">
+                <img class="img-fluid mw-100" src="images/logo.png">
+            </a>
+            <div class="container offset-lg-5 col-lg-2 col-auto text-algolearn-red bg-algolearn-grey rounded-pill text-center">
+                <a class="nav-link">Учиться</a>
+            </div>
 
-        <div class="container col-lg-2 col-auto text-algolearn-grey bg-algolearn-red rounded-pill text-center">
-            <a class="nav-link">Учить</a>
+            <div class="container col-lg-2 col-auto text-algolearn-grey bg-algolearn-red rounded-pill text-center">
+                <a class="nav-link">Учить</a>
+            </div>
+            <!--
+            change in Учиться offset-lg-4
+            <div class="container col-auto col-lg-1">
+                EN
+            </div>
+            -->
         </div>
-        <!--
-        change in Учиться offset-lg-4
-        <div class="container col-auto col-lg-1">
-            EN
-        </div>
-        -->
-    </div>
     </nav>
 
     <div class="jumbotron bg-transparent row my-lg-3" data-aos="zoom-out-down" data-aos-anchor-placement="top-center">
         <div class="container-fluid col-md-4 col-12">
             <h2 class="font-weight-bold">Получите востребованные знания бесплатно</h2>
-            <p class="lead my-1">Лень — естественное состояние программиста, после которого он рождает хороший алгоритм</p>
+            <p class="lead my-1">Лень — естественное состояние программиста, после которого он рождает хороший
+                алгоритм</p>
             <hr class="my-3">
             <p class="lead">
                 <a class="btn bg-algolearn-navbar text-algolearn-grey btn-lg" href="#" role="button">Выбрать курс</a>
@@ -117,7 +133,7 @@
         </div>
 
         <nav id="menu" class="mx-auto">
-            <a class='btn' href='#top'>
+            <a class='btn' href='#popular_courses'>
                 <img class="img-fluid w-25 h-75" src="images/arrow-down.png">
             </a>
         </nav>
@@ -125,87 +141,136 @@
     </div>
 </div>
 
+<div class="container-fluid min-vh-100">
+    <div class="swiper-container">
+        <div id="popular_courses">
+            <h1 class="text-center m-2 mb-4 d-none d-md-block"><strong>Выберите подходящий курс</strong>, подготовленные
+                вузами, кампаниями и индивидуальными авторами </h1>
+            <h5 class="text-center m-2 d-md-none"><strong>Выберите подходящий курс</strong>, подготовленные вузами,
+                кампаниями и индивидуальными авторами </h5>
+        </div>
+        <div class="swiper-wrapper">
 
-<div class="swiper-container">
-    <div class="swiper-wrapper">
+            <div class="card swiper-slide rounded">
+                <div class="card-header w-100 border-0 bg-transparent h-20 d-flex align-items-center justify-content-center">
+                    <h1 class="d-none d-md-block ">Алгоритмы</h1>
+                    <h5 class="d-md-none">Алгоритмы</h5>
+                </div>
+                <div class="card-body h-50">
+                    <img class="card-img-top mw-100 mh-100 h-auto mb-5" src="images/logo.png">
+                </div>
+                <footer class="w-100 h-30 m-md-5">
+                    <div class="card-text">
+                        <p class="d-none d-md-block">Алгоритмы для начинающих</p>
+                        <small class="d-md-none">Алгоритмы для начинающих</small>
+                    </div>
+                    <br>
+                    <a href="#" class="btn btn-light btn-border-algolearn-green">Начать курс</a>
+                </footer>
+            </div>
 
-      <div class="card swiper-slide rounded">
-          <p class="card-header w-100">Python алгоритмы</p>
-          <div class="card-body h-25">
-            <img class="card-img-top mw-100 h-auto mb-5" src="images/logo.png">
-          </div>
-          <footer class="card-footer w-100 algolearn-bottom">
-              <small class="card-text bg-algolearn-grey-transparent">Алгоритмы для начинающих</small><br>
-              <a href="#" class="btn btn-primary">Начать курс</a>
-          </footer>
-      </div>
+            <div class="card swiper-slide rounded">
+                <div class="card-header w-100 border-0 bg-transparent h-20 d-flex align-items-center justify-content-center">
+                    <h1 class="d-none d-md-block">Python для начинающих</h1>
+                    <h5 class="d-md-none">Python для начинающих</h5>
+                </div>
 
-      <div class="card swiper-slide rounded">
-          <div class="card-header w-100">Python для начинающих</div>
-          <div class="card-body h-25">
-            <img class="card-img-top mw-100 h-auto mb-5" src="images/arrow-down.png">
-          </div>
-          <footer class="card-footer w-100 algolearn-bottom">
-              <small class="card-text">Базовый синтаксис python 3</small><br>
-              <a href="#" class="btn btn-primary">Начать курс</a>
-          </footer>
-      </div>
+                <div class="card-body h-50">
+                    <img class="card-img-top mw-100 mh-100 h-auto mb-5 " src="images/arrow-down.png">
+                </div>
 
-      <div class="card swiper-slide rounded">
-          <div class="card-header w-100">Python структуры данных</div>
-          <div class="card-body h-25">
-            <img class="card-img-top mw-100 h-auto mb-5" src="images/logo.png">
-          </div>
-          <footer class="card-footer w-100 algolearn-bottom">
-              <small class="card-text">Стек. Очередь. Связный список.</small><br>
-              <a href="#" class="btn btn-primary">Начать курс</a>
-          </footer>
-      </div>
+                <footer class="w-100 h-30">
+                    <div class="card-text">
+                        <p class="d-none d-md-block">Базовый синтаксис python 3</p>
+                        <small class="d-md-none">Базовый синтаксис python 3</small>
+                    </div>
+                    <br>
+                    <a href="#" class="btn btn-light btn-border-algolearn-green">Начать курс</a>
+                </footer>
+            </div>
 
-      <div class="card swiper-slide rounded">
-          <div class="card-header w-100">C++ для олимпиад</div>
-          <div class="card-body h-25">
-            <img class="card-img-top mw-100 h-auto mb-5" src="images/main_jumbotron.png">
-          </div>
-          <footer class="card-footer w-100 algolearn-bottom">
-              <small class="card-text">Рецепты</small><br>
-              <a href="#" class="btn btn-primary">Начать курс</a>
-          </footer>
-      </div>
+            <div class="card swiper-slide rounded">
+                <div class="card-header w-100 border-0 bg-transparent h-20 d-flex align-items-center justify-content-center">
+                    <h1 class="d-none d-md-block">Структуры данных</h1>
+                    <h5 class="d-md-none">Структуры данных</h5>
+                </div>
+                <div class="card-body h-50">
+                    <img class="card-img-top mw-100 mh-100 h-auto mb-5" src="images/logo.png">
+                </div>
+                <footer class="w-100 h-30">
+                    <div class="card-text">
+                        <p class="d-none d-md-block">Стек. Очередь. Связный список.</p>
+                        <small class="d-md-none">Стек. Очередь. Связный список.</small>
+                    </div>
+                    <br>
+                    <a href="#" class="btn btn-light btn-border-algolearn-green">Начать курс</a>
+                </footer>
+            </div>
 
-      <div class="card swiper-slide rounded">
-          <div class="card-header w-100">Python для экономистов</div>
-          <div class="card-body h-25">
-            <img class="card-img-top mw-100 h-auto mb-5" src="images/logo.png">
-          </div>
-          <footer class="card-footer w-100 algolearn-bottom">
-              <small class="card-text">Простой курс - введение</small><br>
-              <a href="#" class="btn btn-primary">Начать курс</a>
-          </footer>
-      </div>
+            <div class="card swiper-slide rounded">
+                <div class="card-header w-100 border-0 bg-transparent h-20 d-flex align-items-center justify-content-center">
+                    <h1 class="d-none d-md-block">C++ для олимпиад</h1>
+                    <h5 class="d-md-none">C++ для олимпиад</h5>
+                </div>
+                <div class="card-body h-50">
+                    <img class="card-img-top mw-100 mh-100 h-auto mb-5" src="images/main_jumbotron.png">
+                </div>
+                <footer class="w-100 h-30">
+                    <div class="card-text">
+                        <p class="d-none d-md-block">Рецепты</p>
+                        <small class="d-md-none">Рецепты</small>
+                    </div>
+                    <br>
+                    <a href="#" class="btn btn-light btn-border-algolearn-green">Начать курс</a>
+                </footer>
+            </div>
 
-        <div id="top"></div>
+            <div class="card swiper-slide rounded">
+                <div class="card-header w-100 border-0 bg-transparent h-20 d-flex align-items-center justify-content-center">
+                    <h1 class="d-none d-md-block">Python для экономистов</h1>
+                    <h5 class="d-md-none">Python для экономистов</h5>
+                </div>
+                <div class="card-body h-50">
+                    <img class="card-img-top mw-100 mh-100 h-auto mb-5" src="images/logo.png">
+                </div>
+                <footer class="w-100 h-30">
+                    <div class="card-text">
+                        <p class="d-none d-md-block">Простой курс - введение</p>
+                        <small class="d-md-none">Простой курс - введение</small>
+                    </div>
+                    <br>
+                    <a href="#" class="btn btn-light btn-border-algolearn-green">Начать курс</a>
+                </footer>
+            </div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next d-none d-md-block"></div>
+        <div class="swiper-button-prev d-none d-md-block"></div>
     </div>
-    <!-- Add Pagination -->
-    <div class="swiper-pagination"></div>
-    <!-- Add Arrows -->
-    <div class="swiper-button-next d-none d-md-block"></div>
-    <div class="swiper-button-prev d-none d-md-block"></div>
-  </div>
-
-<br>aa
-
+    <div class="text-center m-1 algolearn-bottom">
+        <button href="#" class="btn bg-algolearn-navbar text-algolearn-grey btn-lg">Учиться</button>
+    </div>
+</div>
 <br>aa
 <br>aa
-  <div style="width: 100px; height: 100px; background-color: blue; margin: auto;" data-aos="fade-up"></div><br>
-  <div style="width: 100px; height: 100px; background-color: blue; margin: auto;" data-aos="zoom-out-down"></div><br>
-  <div style="width: 100px; height: 100px; background-color: blue; margin: auto;" data-aos="flip-down"></div><br>
-  <div style="width: 100px; height: 100px; background-color: blue; margin: auto;" data-aos="flip-right"></div><br>
-  <div style="width: 100px; height: 100px; background-color: blue; margin: auto;" data-aos="flip-left"></div><br>
-  <div style="width: 100px; height: 100px; background-color: green; margin: auto;" data-aos="fade-right"></div><br>
-  <div style="width: 100px; height: 100px; background-color: green; margin: auto;" data-aos="fade-left"></div><br>
+<div style="width: 100px; height: 100px; background-color: blue; margin: auto;" data-aos="fade-up"></div>
+<br>
+<div style="width: 100px; height: 100px; background-color: blue; margin: auto;" data-aos="zoom-out-down"></div>
+<br>
+<div style="width: 100px; height: 100px; background-color: blue; margin: auto;" data-aos="flip-down"></div>
+<br>
+<div style="width: 100px; height: 100px; background-color: blue; margin: auto;" data-aos="flip-right"></div>
+<br>
+<div style="width: 100px; height: 100px; background-color: blue; margin: auto;" data-aos="flip-left"></div>
+<br>
+<div style="width: 100px; height: 100px; background-color: green; margin: auto;" data-aos="fade-right"></div>
+<br>
+<div style="width: 100px; height: 100px; background-color: green; margin: auto;" data-aos="fade-left"></div>
+<br>
 
-  <div style="width: 100px; height: 100px; background-color: red; margin: auto;" data-aos="fade-up"></div>
+<div style="width: 100px; height: 100px; background-color: red; margin: auto;" data-aos="fade-up"></div>
 <br>aa
 <br>aa
 <br>aa
@@ -217,9 +282,6 @@
 <br>aafdsafsd
 
 
-
-
-
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/swiper.min.js"></script>
@@ -227,34 +289,34 @@
 <!-- swiper -->
 <script>
     var swiper = new Swiper('.swiper-container', {
-      slidesPerView: 2,
-      spaceBetween: 20,
-      slidesPerGroup: 1,
-      loop: true,
-      loopFillGroupWithBlank: true,
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-        reverseDirection: false, <!-- Помогите -->
-      },
+        slidesPerView: 2,
+        spaceBetween: 20,
+        slidesPerGroup: 1,
+        loop: true,
+        loopFillGroupWithBlank: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+            reverseDirection: false, <!-- Помогите -->
+        },
 
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-        dynamicBullets: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            dynamicBullets: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
     });
 </script>
 <!-- arrow -->
 <script type="text/javascript">
-    $(document).ready(function(){
-        $("#menu").on("click","a", function (event) {
+    $(document).ready(function () {
+        $("#menu").on("click", "a", function (event) {
             event.preventDefault();
-            var id  = $(this).attr('href'),
+            var id = $(this).attr('href'),
                 top = $(id).offset().top;
             $('body,html').animate({scrollTop: top}, 2500);
         });
@@ -262,26 +324,26 @@
 </script>
 <!-- scroller -->
 <script>
-      AOS.init({
-          // Global settings:
-          disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
-          startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
-          initClassName: 'aos-init', // class applied after initialization
-          animatedClassName: 'aos-animate', // class applied on animation
-          useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
-          disableMutationObserver: false, // disables automatic mutations' detections (advanced)
-          debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
-          throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+    AOS.init({
+        // Global settings:
+        disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+        startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+        initClassName: 'aos-init', // class applied after initialization
+        animatedClassName: 'aos-animate', // class applied on animation
+        useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+        disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+        debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+        throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
 
 
-          // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
-          offset: 120, // offset (in px) from the original trigger point
-          delay: 0, // values from 0 to 3000, with step 50ms
-          duration: 1500, // values from 0 to 3000, with step 50ms
-          easing: 'ease', // default easing for AOS animations
-          once: false, // whether animation should happen only once - while scrolling down
-          mirror: false, // whether elements should animate out while scrolling past them
-          anchorPlacement: 'top-center', // defines which position of the element regarding to window should trigger the animation
+        // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+        offset: 120, // offset (in px) from the original trigger point
+        delay: 0, // values from 0 to 3000, with step 50ms
+        duration: 1500, // values from 0 to 3000, with step 50ms
+        easing: 'ease', // default easing for AOS animations
+        once: false, // whether animation should happen only once - while scrolling down
+        mirror: false, // whether elements should animate out while scrolling past them
+        anchorPlacement: 'top-center', // defines which position of the element regarding to window should trigger the animation
 
     });
 </script>
