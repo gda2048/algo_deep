@@ -18,15 +18,16 @@ from django.urls import path
 from django.conf.urls import url, include
 from rest_framework_swagger.views import get_swagger_view
 from api.views import *
+
 from allauth.account.views import ConfirmEmailView
 
 
 schema_view = get_swagger_view(title='Algolearn API')
 
 
-
 urlpatterns = [
     # Override urls
+    url(r'^$', main, name='main'),
     url(r'^api/auth/registration/account-email-verification-sent/', null_view, name='account_email_verification_sent'),
     url(r'^api/auth/registration/account-confirm-email/(?P<key>[-:\w]+)/$', ConfirmEmailView.as_view(), name='account_confirm_email'),
     url(r'^api/auth/registration/complete/$', complete_view, name='account_confirm_complete'),
@@ -36,7 +37,7 @@ urlpatterns = [
 urlpatterns += [
     url(r'^accounts/', include('allauth.urls')),
     url(r'^', include('django.contrib.auth.urls')),
-    url(r'^$', schema_view),
+    url(r'^schema$', schema_view),
     path('admin/', admin.site.urls),
     url(r'^api/auth/registration/', include('rest_auth.registration.urls')),
     url(r'^api/auth/', include('rest_auth.urls')),

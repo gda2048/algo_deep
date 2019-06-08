@@ -5,6 +5,13 @@ from rest_auth.social_serializers import TwitterLoginSerializer
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.shortcuts import render
+from .models import *
+
+
+def main(request):
+    courses = Course.objects.all()
+    return render(request, "main.html", {'courses': courses})
 
 
 class FacebookLogin(SocialLoginView):

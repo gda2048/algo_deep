@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="css/swiper.min.css" type="text/css">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}" type="text/css">
     <!--<link href="css/aos.css" rel="stylesheet"> SCROLLER-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -36,10 +37,6 @@
 
         .bg-algolearn-yellow {
             background-color: rgba(240, 216, 121, 0.7);
-        }
-
-        .text-algolearn-yellow {
-            color: rgba(240, 216, 121, 1);
         }
 
         .text-algolearn-grey {
@@ -103,7 +100,7 @@
     <nav class="navbar bg-algolearn-navbar sticky-top row">
         <div class="container-fluid font-algolearn-arial">
             <a href="#" class="navbar-brand col-12 col-sm-4 col-md-4 col-lg-2">
-                <img class="img-fluid mw-100" src="images/logo.png">
+                <img alt="logo" class="img-fluid mw-100" src="{% static 'images/logo.png' %}">
             </a>
             <div class="container offset-lg-5 col-lg-2 col-auto text-algolearn-red bg-algolearn-grey rounded-pill text-center">
                 <a class="nav-link">Учиться</a>
@@ -132,12 +129,12 @@
             </p>
         </div>
         <div class="offset-1 col-4 my-lg-5 d-none d-md-block">
-            <img class="img-fluid mw-100" src="images/main_jumbotron.png">
+            <img alt="image" class="img-fluid mw-100" src="{% static 'images/main_jumbotron.png' %}">
         </div>
 
         <nav id="menu" class="mx-auto">
             <a class='btn' href='#popular_courses'>
-                <img class="img-fluid w-25 h-75" src="images/arrow-down.png">
+                <img alt="arrow" class="img-fluid w-25 h-75" src="{% static 'images/arrow-down.png' %}">
             </a>
         </nav>
 
@@ -153,98 +150,25 @@
                 компаниями и индивидуальными авторами </h5>
         </div>
         <div class="swiper-wrapper">
-
-            <div class="card swiper-slide rounded">
+            {% for course in courses %}
+                <div class="card swiper-slide rounded">
                 <div class="card-header w-100 border-0 bg-transparent h-20 d-flex align-items-center justify-content-center">
-                    <h1 class="d-none d-md-block ">Алгоритмы</h1>
-                    <h5 class="d-md-none">Алгоритмы</h5>
+                    <h1 class="d-none d-md-block">{{ course.name }}</h1>
+                    <h5 class="d-md-none">{{ course.name }}</h5>
                 </div>
                 <div class="card-body h-50">
-                    <img class="card-img-top mw-100 mh-100 h-auto mb-5" src="images/logo.png">
-                </div>
-                <footer class="w-100 h-30 m-md-5">
-                    <div class="card-text">
-                        <p class="d-none d-md-block">Алгоритмы для начинающих</p>
-                        <small class="d-md-none">Алгоритмы для начинающих</small>
-                    </div>
-                    <br>
-                    <a href="#" class="btn btn-light btn-border-algolearn-green">Начать курс</a>
-                </footer>
-            </div>
-
-            <div class="card swiper-slide rounded">
-                <div class="card-header w-100 border-0 bg-transparent h-20 d-flex align-items-center justify-content-center">
-                    <h1 class="d-none d-md-block">Python для начинающих</h1>
-                    <h5 class="d-md-none">Python для начинающих</h5>
-                </div>
-
-                <div class="card-body h-50">
-                    <img class="card-img-top mw-100 mh-100 h-auto mb-5 " src="images/arrow-down.png">
-                </div>
-
-                <footer class="w-100 h-30">
-                    <div class="card-text">
-                        <p class="d-none d-md-block">Базовый синтаксис python 3</p>
-                        <small class="d-md-none">Базовый синтаксис python 3</small>
-                    </div>
-                    <br>
-                    <a href="#" class="btn btn-light btn-border-algolearn-green">Начать курс</a>
-                </footer>
-            </div>
-
-            <div class="card swiper-slide rounded">
-                <div class="card-header w-100 border-0 bg-transparent h-20 d-flex align-items-center justify-content-center">
-                    <h1 class="d-none d-md-block">Структуры данных</h1>
-                    <h5 class="d-md-none">Структуры данных</h5>
-                </div>
-                <div class="card-body h-50">
-                    <img class="card-img-top mw-100 mh-100 h-auto mb-5" src="images/logo.png">
+                    <img class="card-img-top mw-100 mh-100 h-auto mb-5" src={{course.photo}}>
                 </div>
                 <footer class="w-100 h-30">
                     <div class="card-text">
-                        <p class="d-none d-md-block">Стек. Очередь. Связный список.</p>
-                        <small class="d-md-none">Стек. Очередь. Связный список.</small>
+                        <p class="d-none d-md-block">{{course.description}}</p>
+                        <small class="d-md-none">{{course.description}}</small>
                     </div>
                     <br>
                     <a href="#" class="btn btn-light btn-border-algolearn-green">Начать курс</a>
                 </footer>
             </div>
-
-            <div class="card swiper-slide rounded">
-                <div class="card-header w-100 border-0 bg-transparent h-20 d-flex align-items-center justify-content-center">
-                    <h1 class="d-none d-md-block">C++ для олимпиад</h1>
-                    <h5 class="d-md-none">C++ для олимпиад</h5>
-                </div>
-                <div class="card-body h-50">
-                    <img class="card-img-top mw-100 mh-100 h-auto mb-5" src="images/main_jumbotron.png">
-                </div>
-                <footer class="w-100 h-30">
-                    <div class="card-text">
-                        <p class="d-none d-md-block">Рецепты</p>
-                        <small class="d-md-none">Рецепты</small>
-                    </div>
-                    <br>
-                    <a href="#" class="btn btn-light btn-border-algolearn-green">Начать курс</a>
-                </footer>
-            </div>
-
-            <div class="card swiper-slide rounded">
-                <div class="card-header w-100 border-0 bg-transparent h-20 d-flex align-items-center justify-content-center">
-                    <h1 class="d-none d-md-block">Python для экономистов</h1>
-                    <h5 class="d-md-none">Python для экономистов</h5>
-                </div>
-                <div class="card-body h-50">
-                    <img class="card-img-top mw-100 mh-100 h-auto mb-5" src="images/logo.png">
-                </div>
-                <footer class="w-100 h-30">
-                    <div class="card-text">
-                        <p class="d-none d-md-block">Простой курс - введение</p>
-                        <small class="d-md-none">Простой курс - введение</small>
-                    </div>
-                    <br>
-                    <a href="#" class="btn btn-light btn-border-algolearn-green">Начать курс</a>
-                </footer>
-            </div>
+            {% endfor %}
         </div>
         <!-- Add Pagination -->
         <div class="swiper-pagination"></div>
@@ -268,7 +192,7 @@
     <div class="row justify-content-around">
         <div class="card border-0 bg-transparent col-6">
             <div class="card-body col-md-6 offset-md-4 text-center">
-                <img class="card-img-top" src="images/create_course.png">
+                <img class="card-img-top" src="{% static 'images/create_course.png' %}">
                 <div class="card-title">
                     <h1 class="d-none d-md-block"><strong>Создавайте курсы</strong></h1>
                     <h5 class="d-md-none"><strong>Создавайте курсы</strong></h5>
@@ -285,7 +209,7 @@
 
         <div class="card border-0 col-6 bg-transparent">
             <div class="card-body col-md-6 offset-md-2 text-center">
-                <img class="card-img-top" src="images/create_group.png">
+                <img class="card-img-top" src="{% static 'images/create_group.png' %}">
                 <div class="card-title">
                     <h1 class="d-none d-md-block"><strong>Группы</strong></h1>
                     <h5 class="d-md-none"><strong>Группы</strong></h5>
@@ -313,98 +237,106 @@
             <small class="d-md-none">Учитесь лучше с нашим мобильным приложением</small>
         </div>
         <div class="col-4 align-self-center p-2">
-            <img class="mh-100 mw-100" src="images/play_market.png">
+            <img alt="play_market" class="mh-100 mw-100" src="{% static 'images/play_market.png' %}">
         </div>
     </div>
     <br>
 </div>
 
 <div class="bg-algolearn-navbar min-vh-100 text-white">
-<div id="fb_carausel" class="carousel slide py-2 py-md-5" data-ride="carousel">
-    <div>
-        <div class="text-center pt-4 pt-md-5">
-            <h1 class="d-none d-md-block"><strong>Отзывы</strong></h1>
-            <h2 class="d-md-none"><strong>Отзывы</strong></h2>
+    <div id="fb_carausel" class="carousel slide py-2 py-md-5" data-ride="carousel">
+        <div>
+            <div class="text-center pt-4 pt-md-5">
+                <h1 class="d-none d-md-block"><strong>Отзывы</strong></h1>
+                <h2 class="d-md-none"><strong>Отзывы</strong></h2>
+            </div>
         </div>
+        <div class="carousel-inner text-center">
+            <div class="carousel-item active">
+                <div class="py-5 p-md-5 m-md-5">
+                    <h2 class="d-none d-md-block">
+                        С Algolearn я познакомился в университете, где онлайн-задания довольно успешно внедрялись
+                        преподавателями в учебный план. С ростом интереса к программированию росло и желание узнать
+                        больше информации о новых
+                        для меня темах. Тогда я обратилась к Algolearn как к платформе, которая даёт возможность
+                        максимально быстро и
+                        эффективно погрузиться в незнакомый материал или углубить имеющиеся знания, и мои ожидания
+                        полностью
+                        оправдались.
+                    </h2>
+                    <p class="d-md-none">
+                        С Algolearn я познакомился в университете, где онлайн-задания довольно успешно внедрялись
+                        преподавателями в учебный план. С ростом интереса к программированию росло и желание узнать
+                        больше информации о новых
+                        для меня темах. Тогда я обратилась к Algolearn как к платформе, которая даёт возможность
+                        максимально быстро и
+                        эффективно погрузиться в незнакомый материал или углубить имеющиеся знания, и мои ожидания
+                        полностью
+                        оправдались.
+                    </p>
+                </div>
+                <div class="mt-5">
+                    <img alt="feedback_user" src="{% static 'images/fb1.svg' %}">
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="py-5 p-md-5 m-md-5">
+                    <h2 class="d-none d-md-block">
+                        На Algolearn отличные курсы, некоторые лучшие из всех, что я когда-либо проходил. А ещё здесь
+                        потрясающее
+                        сообщество учащихся. Немалую долю пользы и удовольствия от прохождения курса приносят обсуждения
+                        в
+                        комментариях и на форуме решений. Форумы решений — вообще очень очень крутая особенность
+                        платформы
+                    </h2>
+                    <p class="d-md-none">
+                        На Algolearn отличные курсы, некоторые лучшие из всех, что я когда-либо проходил. А ещё здесь
+                        потрясающее сообщество учащихся. Немалую долю пользы и удовольствия от прохождения курса
+                        приносят обсуждения в
+                        комментариях и на форуме решений. Форумы решений — вообще очень очень крутая особенность
+                        платформы
+                    </p>
+                </div>
+                <div class="mt-5">
+                    <img alt="feedback_user" src="{% static 'images/fb1.svg' %}">
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#fb_carausel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#fb_carausel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
-    <div class="carousel-inner text-center">
-        <div class="carousel-item active">
-            <div class="py-5 p-md-5 m-md-5">
-                <h2 class="d-none d-md-block">
-                    С Algolearn я познакомился в университете, где онлайн-задания довольно успешно внедрялись
-                    преподавателями в учебный план. С ростом интереса к программированию росло и желание узнать больше информации о новых
-                    для меня темах. Тогда я обратилась к Algolearn как к платформе, которая даёт возможность максимально быстро и
-                    эффективно погрузиться в незнакомый материал или углубить имеющиеся знания, и мои ожидания полностью
-                    оправдались.
-                </h2>
-                <p class="d-md-none">
-                    С Algolearn я познакомился в университете, где онлайн-задания довольно успешно внедрялись
-                    преподавателями в учебный план. С ростом интереса к программированию росло и желание узнать больше информации о новых
-                    для меня темах. Тогда я обратилась к Algolearn как к платформе, которая даёт возможность максимально быстро и
-                    эффективно погрузиться в незнакомый материал или углубить имеющиеся знания, и мои ожидания полностью
-                    оправдались.
-                </p>
-            </div>
-            <div class="mt-5">
-                <img src="images/fb1.svg">
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="py-5 p-md-5 m-md-5">
-                <h2 class="d-none d-md-block">
-                На Algolearn отличные курсы, некоторые лучшие из всех, что я когда-либо проходил. А ещё здесь потрясающее
-                сообщество учащихся. Немалую долю пользы и удовольствия от прохождения курса приносят обсуждения в
-                комментариях и на форуме решений. Форумы решений — вообще очень очень крутая особенность платформы
-                </h2>
-                <p class="d-md-none">
-                На Algolearn отличные курсы, некоторые лучшие из всех, что я когда-либо проходил. А ещё здесь
-                потрясающее сообщество учащихся. Немалую долю пользы и удовольствия от прохождения курса приносят обсуждения в
-                комментариях и на форуме решений. Форумы решений — вообще очень очень крутая особенность платформы
-                </p>
-            </div>
-            <div class="mt-5">
-                <img src="images/fb1.svg">
-            </div>
-        </div>
-    </div>
-    <a class="carousel-control-prev" href="#fb_carausel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#fb_carausel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
 </div>
 
 <div class="min-vh-100 mw-100 text-center row d-flex align-items-center">
     <div class="offset-3 col-6">
-    <div class="d-none d-md-block">
-        <h1><strong>Начните</strong> обучаться прямо сейчас!</h1>
-        <h1>По любым вопросам можно обратиться к нам на algolearn2048@gmail.com</h1>
-    </div>
-    <div class="d-md-none">
-        <p><strong>Начните</strong> обучаться прямо сейчас!</p>
-        <p>По любым вопросам можно обратиться к нам на algolearn2048@gmail.com</>
-    </div>
-    <br>
-    <div class="text-center m-1">
-        <button href="#" class="btn bg-algolearn-red text-algolearn-grey btn-lg">Стать учителем</button>
-    </div>
+        <div class="d-none d-md-block">
+            <h1><strong>Начните</strong> обучаться прямо сейчас!</h1>
+            <h1>По любым вопросам можно обратиться к нам на algolearn2048@gmail.com</h1>
+        </div>
+        <div class="d-md-none">
+            <p><strong>Начните</strong> обучаться прямо сейчас!</p>
+            <p>По любым вопросам можно обратиться к нам на algolearn2048@gmail.com</p>
+        </div>
+        <br>
+        <div class="text-center m-1">
+            <button href="#" class="btn bg-algolearn-red text-algolearn-grey btn-lg">Стать учителем</button>
+        </div>
     </div>
 </div>
 
 
-
-
-
-<script src="js/jquery-3.4.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/swiper.min.js"></script>
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/swiper.min.js' %}"></script>
 <!-- swiper -->
 <script>
-    var swiper = new Swiper('.swiper-container', {
+    let swiper = new Swiper('.swiper-container', {
         slidesPerView: 2,
         spaceBetween: 20,
         slidesPerGroup: 1,
@@ -432,7 +364,7 @@
     $(document).ready(function () {
         $("#menu").on("click", "a", function (event) {
             event.preventDefault();
-            var id = $(this).attr('href'),
+            let id = $(this).attr('href'),
                 top = $(id).offset().top;
             $('body,html').animate({scrollTop: top}, 2500);
         });
