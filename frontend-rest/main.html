@@ -6,7 +6,7 @@
     <title>Title</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="css/swiper.min.css" type="text/css">
-    <link href="css/aos.css" rel="stylesheet">
+    <!--<link href="css/aos.css" rel="stylesheet"> SCROLLER-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
@@ -84,11 +84,14 @@
             border-color: rgba(36, 136, 136, 1);
         }
 
-        .algolearn-bottom { <!-- TODO should work as footer (to the bottom) -->
-            position: relative;
+        .algolearn-bottom {
+        <!-- TODO should work as footer (to the bottom) --> position: relative;
             bottom: 0;
         }
 
+        .bg-algolearn-gradient {
+            background: linear-gradient(to right, rgba(230, 230, 230, 1) 10%, rgba(36, 136, 136, 1));
+        }
     </style>
 </head>
 
@@ -254,31 +257,44 @@
     </div>
 </div>
 
-<div class="container-fluid min-vh-100 ">
-    <div class="text-center m-2">
+<div class="container-fluid ">
+    <div class="text-center m-5">
         <h1 class="mb-4 d-none d-md-block"><strong>Станьте учителем</strong> - создавайте курсы, проводите интерактивные
             занятия </h1>
         <h5 class="d-md-none"><strong>Станьте учителем</strong> - создавайте курсы, проводите интерактивные занятия
         </h5>
     </div>
 
-    <div class="card-deck">
-        <div class="card border-0 bg-transparent w-25 swiper-slide"> <!-- delete swiper slide TODO -->
-            <div class="card-body">
-                <img class="card-img-top mw-100 mh-100 h-auto mb-5" src="images/create_course.png">
-                <div class="card-text">
+    <div class="row justify-content-around">
+        <div class="card border-0 bg-transparent col-6">
+            <div class="card-body col-md-6 offset-md-4 text-center">
+                <img class="card-img-top" src="images/create_course.png">
+                <div class="card-title">
                     <h1 class="d-none d-md-block"><strong>Создавайте курсы</strong></h1>
-                    <h3 class="d-md-none"><strong>Создавайте курсы</strong></h3>
+                    <h5 class="d-md-none"><strong>Создавайте курсы</strong></h5>
+                </div>
+                <div class="card-text m-2">
+                    <h3 class="d-none d-md-block">Создавайте уникальные программы курсов, ведите группу к успешному
+                        обучению</h3>
+                    <small class="d-md-none">Создавайте уникальные программы курсов, ведите группу к успешному
+                        обучению
+                    </small>
                 </div>
             </div>
         </div>
 
-        <div class="card border-0 bg-transparent w-25 h-25 swiper-slide">
-            <div class="card-body h-50">
-                <img class="card-img-top mw-100 mh-100 h-auto mb-5 " src="images/create_group.png">
+        <div class="card border-0 col-6 bg-transparent">
+            <div class="card-body col-md-6 offset-md-2 text-center">
+                <img class="card-img-top" src="images/create_group.png">
                 <div class="card-title">
                     <h1 class="d-none d-md-block"><strong>Группы</strong></h1>
-                    <h3 class="d-md-none"><strong>Группы</strong></h3>
+                    <h5 class="d-md-none"><strong>Группы</strong></h5>
+                </div>
+                <div class="card-text m-2">
+                    <h3 class="d-none d-md-block">Ведите анализ обучения в группах, следите за их успеваемостью и
+                        решением</h3>
+                    <small class="d-md-none">Ведите анализ обучения в группах, следите за их успеваемостью и решением
+                    </small>
                 </div>
             </div>
         </div>
@@ -288,39 +304,104 @@
     </div>
 </div>
 
-<br>aa
-<br>aa
-<div style="width: 100px; height: 100px; background-color: blue; margin: auto;" data-aos="fade-up"></div>
-<br>
-<div style="width: 100px; height: 100px; background-color: blue; margin: auto;" data-aos="zoom-out-down"></div>
-<br>
-<div style="width: 100px; height: 100px; background-color: blue; margin: auto;" data-aos="flip-down"></div>
-<br>
-<div style="width: 100px; height: 100px; background-color: blue; margin: auto;" data-aos="flip-right"></div>
-<br>
-<div style="width: 100px; height: 100px; background-color: blue; margin: auto;" data-aos="flip-left"></div>
-<br>
-<div style="width: 100px; height: 100px; background-color: green; margin: auto;" data-aos="fade-right"></div>
-<br>
-<div style="width: 100px; height: 100px; background-color: green; margin: auto;" data-aos="fade-left"></div>
-<br>
+<!-- Play Market-->
+<div class="bg-transparent py-3 my-3 py-md-5 my-md-5">
+    <br>
+    <div class="bg-algolearn-gradient m-5 rounded row justify-content-around ">
+        <div class="col-4 align-self-center">
+            <h3 class="d-none d-md-block">Учитесь лучше с нашим мобильным приложением</h3>
+            <small class="d-md-none">Учитесь лучше с нашим мобильным приложением</small>
+        </div>
+        <div class="col-4 align-self-center p-2">
+            <img class="mh-100 mw-100" src="images/play_market.png">
+        </div>
+    </div>
+    <br>
+</div>
 
-<div style="width: 100px; height: 100px; background-color: red; margin: auto;" data-aos="fade-up"></div>
-<br>aa
-<br>aa
-<br>aa
-<br>aa
-<br>aa
-<br>aa
-<br>aa
-<br>aa
-<br>aafdsafsd
+<div class="bg-algolearn-navbar min-vh-100 text-white">
+<div id="fb_carausel" class="carousel slide py-2 py-md-5" data-ride="carousel">
+    <div>
+        <div class="text-center pt-4 pt-md-5">
+            <h1 class="d-none d-md-block"><strong>Отзывы</strong></h1>
+            <h2 class="d-md-none"><strong>Отзывы</strong></h2>
+        </div>
+    </div>
+    <div class="carousel-inner text-center">
+        <div class="carousel-item active">
+            <div class="py-5 p-md-5 m-md-5">
+                <h2 class="d-none d-md-block">
+                    С Algolearn я познакомился в университете, где онлайн-задания довольно успешно внедрялись
+                    преподавателями в учебный план. С ростом интереса к программированию росло и желание узнать больше информации о новых
+                    для меня темах. Тогда я обратилась к Algolearn как к платформе, которая даёт возможность максимально быстро и
+                    эффективно погрузиться в незнакомый материал или углубить имеющиеся знания, и мои ожидания полностью
+                    оправдались.
+                </h2>
+                <p class="d-md-none">
+                    С Algolearn я познакомился в университете, где онлайн-задания довольно успешно внедрялись
+                    преподавателями в учебный план. С ростом интереса к программированию росло и желание узнать больше информации о новых
+                    для меня темах. Тогда я обратилась к Algolearn как к платформе, которая даёт возможность максимально быстро и
+                    эффективно погрузиться в незнакомый материал или углубить имеющиеся знания, и мои ожидания полностью
+                    оправдались.
+                </p>
+            </div>
+            <div class="mt-5">
+                <img src="images/fb1.svg">
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="py-5 p-md-5 m-md-5">
+                <h2 class="d-none d-md-block">
+                На Algolearn отличные курсы, некоторые лучшие из всех, что я когда-либо проходил. А ещё здесь потрясающее
+                сообщество учащихся. Немалую долю пользы и удовольствия от прохождения курса приносят обсуждения в
+                комментариях и на форуме решений. Форумы решений — вообще очень очень крутая особенность платформы
+                </h2>
+                <p class="d-md-none">
+                На Algolearn отличные курсы, некоторые лучшие из всех, что я когда-либо проходил. А ещё здесь
+                потрясающее сообщество учащихся. Немалую долю пользы и удовольствия от прохождения курса приносят обсуждения в
+                комментариях и на форуме решений. Форумы решений — вообще очень очень крутая особенность платформы
+                </p>
+            </div>
+            <div class="mt-5">
+                <img src="images/fb1.svg">
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#fb_carausel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#fb_carausel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+</div>
+
+<div class="min-vh-100 mw-100 text-center row d-flex align-items-center">
+    <div class="offset-3 col-6">
+    <div class="d-none d-md-block">
+        <h1><strong>Начните</strong> обучаться прямо сейчас!</h1>
+        <h1>По любым вопросам можно обратиться к нам на algolearn2048@gmail.com</h1>
+    </div>
+    <div class="d-md-none">
+        <p><strong>Начните</strong> обучаться прямо сейчас!</p>
+        <p>По любым вопросам можно обратиться к нам на algolearn2048@gmail.com</>
+    </div>
+    <br>
+    <div class="text-center m-1">
+        <button href="#" class="btn bg-algolearn-red text-algolearn-grey btn-lg">Стать учителем</button>
+    </div>
+    </div>
+</div>
+
+
+
 
 
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/swiper.min.js"></script>
-<script src="js/aos.js"></script>
 <!-- swiper -->
 <script>
     var swiper = new Swiper('.swiper-container', {
@@ -358,6 +439,8 @@
     });
 </script>
 <!-- scroller -->
+<!--
+<script src="js/aos.js"></script>
 <script>
     AOS.init({
         // Global settings:
@@ -382,6 +465,6 @@
 
     });
 </script>
-
+-->
 </body>
 </html>
