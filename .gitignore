@@ -105,5 +105,6 @@ venv.bak/
 
 \.idea/
 
-/frontend-rest/.idea/
-/frontend-rest/node_modules/
+frontend-rest/css/
+
+frontend-rest/js/
