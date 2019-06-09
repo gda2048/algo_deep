@@ -1,0 +1,1 @@
+web: gunicorn algolearn.wsgi --log-file -
