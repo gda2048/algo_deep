@@ -1,0 +1,78 @@
+.h-20 {
+    height: 20%;
+}
+
+.h-30 {
+    height: 30%;
+}
+
+.bg-algolearn-navbar {
+    background-color: rgba(36, 136, 136, 1);
+}
+
+.bg-algolearn-red {
+    background-color: rgba(231, 71, 94, 1);
+}
+
+.bg-algolearn-grey {
+    background-color: rgba(230, 230, 230, 1);
+}
+
+.text-algolearn-red {
+    color: rgba(231, 71, 94, 1);
+}
+
+.bg-algolearn-yellow {
+    background-color: rgba(240, 216, 121, 0.7);
+}
+
+.text-algolearn-grey {
+    color: rgba(230, 230, 230, 1);
+}
+
+.font-algolearn-arial {
+    font-family: Arial;
+    font-size: inherit;
+    font-weight: bold;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.swiper-slide {
+    height: auto;
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.btn-border-algolearn-green {
+    border-width: 2px;
+    border-color: rgba(36, 136, 136, 1);
+}
+
+.algolearn-bottom {
+<!-- TODO should work as footer (to the bottom) --> position: relative;
+    bottom: 0;
+}
+
+.bg-algolearn-gradient {
+    background: linear-gradient(to right, rgba(230, 230, 230, 1) 10%, rgba(36, 136, 136, 1));
+}

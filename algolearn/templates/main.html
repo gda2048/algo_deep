@@ -7,108 +7,40 @@
     <title>Title</title>
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/algolearn.css' %}" type="text/css">
     <!--<link href="css/aos.css" rel="stylesheet"> SCROLLER-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        .h-20 {
-            height: 20%;
-        }
 
-        .h-30 {
-            height: 30%;
-        }
-
-        .bg-algolearn-navbar {
-            background-color: rgba(36, 136, 136, 1);
-        }
-
-        .bg-algolearn-red {
-            background-color: rgba(231, 71, 94, 1);
-        }
-
-        .bg-algolearn-grey {
-            background-color: rgba(230, 230, 230, 1);
-        }
-
-        .text-algolearn-red {
-            color: rgba(231, 71, 94, 1);
-        }
-
-        .bg-algolearn-yellow {
-            background-color: rgba(240, 216, 121, 0.7);
-        }
-
-        .text-algolearn-grey {
-            color: rgba(230, 230, 230, 1);
-        }
-
-        .font-algolearn-arial {
-            font-family: Arial;
-            font-size: inherit;
-            font-weight: bold;
-        }
-
-        .swiper-container {
-            width: 100%;
-            height: 100%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .swiper-slide {
-            height: auto;
-            text-align: center;
-            font-size: 18px;
-            background: #fff;
-            /* Center slide text vertically */
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: -webkit-flex;
-            display: flex;
-            -webkit-box-pack: center;
-            -ms-flex-pack: center;
-            -webkit-justify-content: center;
-            justify-content: center;
-            -webkit-box-align: center;
-            -ms-flex-align: center;
-            -webkit-align-items: center;
-            align-items: center;
-        }
-
-        .btn-border-algolearn-green {
-            border-width: 2px;
-            border-color: rgba(36, 136, 136, 1);
-        }
-
-        .algolearn-bottom {
-        <!-- TODO should work as footer (to the bottom) --> position: relative;
-            bottom: 0;
-        }
-
-        .bg-algolearn-gradient {
-            background: linear-gradient(to right, rgba(230, 230, 230, 1) 10%, rgba(36, 136, 136, 1));
-        }
-    </style>
 </head>
 
 <body class="bg-algolearn-grey">
 
 
-<div class="min-vh-200 bg-algolearn-yellow container-fluid">
+<div class="min-vh-100 bg-algolearn-yellow container-fluid">
 
     <nav class="navbar bg-algolearn-navbar sticky-top row">
         <div class="container-fluid font-algolearn-arial">
             <a href="#" class="navbar-brand col-12 col-sm-4 col-md-4 col-lg-2">
                 <img alt="logo" class="img-fluid mw-100" src="{% static 'images/logo.png' %}">
             </a>
+            {% if user.is_authenticated %}
             <div class="container offset-lg-5 col-lg-2 col-auto text-algolearn-red bg-algolearn-grey rounded-pill text-center">
-                <a class="nav-link">Учиться</a>
+                <a href="{% url 'logout' %}" class="nav-link">Выйти</a>
             </div>
 
             <div class="container col-lg-2 col-auto text-algolearn-grey bg-algolearn-red rounded-pill text-center">
-                <a class="nav-link">Учить</a>
+                <a class="nav-link">{{user.username}}</a>
             </div>
+            {% else %}
+            <div class="container offset-lg-5 col-lg-2 col-auto text-algolearn-red bg-algolearn-grey rounded-pill text-center">
+                <a href="login/" class="nav-link">Войти</a>
+            </div>
+
+            <div class="container col-lg-2 col-auto text-algolearn-grey bg-algolearn-red rounded-pill text-center">
+                <a class="nav-link">Зарегистрироваться</a>
+            </div>
+            {% endif %}
             <!--
             change in Учиться offset-lg-4
             <div class="container col-auto col-lg-1">
@@ -151,7 +83,7 @@
         </div>
         <div class="swiper-wrapper">
             {% for course in courses %}
-                <div class="card swiper-slide rounded">
+            <div class="card swiper-slide rounded">
                 <div class="card-header w-100 border-0 bg-transparent h-20 d-flex align-items-center justify-content-center">
                     <h1 class="d-none d-md-block">{{ course.name }}</h1>
                     <h5 class="d-md-none">{{ course.name }}</h5>
