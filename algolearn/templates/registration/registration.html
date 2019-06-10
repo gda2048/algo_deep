@@ -23,13 +23,11 @@
         </div>
     </nav>
 
-
-    <!-- templates/registration/login.html -->
-    <h2>Login</h2>
+    <h2>Sign up</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="btn bg-algolearn-red text-algolearn-grey" type="submit">Login</button>
+        <button class="btn bg-algolearn-red text-algolearn-grey" type="submit">Sign up</button>
     </form>
 </div>
 <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
