@@ -15,11 +15,11 @@ class QuizSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Quiz
-        fields = ('id', 'name', 'description', 'questions')
+        fields = ('id', 'name', 'description', 'questions', 'course')
 
 
 class TheorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Theory
-        fields = ('id', 'name', 'description', 'theory_link')
+        fields = ('id', 'name', 'description', 'theory_link', 'course')

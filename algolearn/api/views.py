@@ -6,6 +6,7 @@ from rest_framework import status, generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.shortcuts import render, redirect
+from django.http import Http404
 from .models import *
 from .forms import SignUpForm
 from .serializers import CourseSerializer, TheorySerializer, QuizSerializer
@@ -49,6 +50,24 @@ class TheoryList(generics.ListAPIView):
     queryset = Theory.objects.all()
 
 
+class QuizDetail(generics.RetrieveAPIView):
+    """
+    API endpoint that represents a single theory lesson.
+    """
+    model = Quiz
+    serializer_class = QuizSerializer
+    queryset = Quiz.objects.all()
+
+
+class QuizList(generics.ListAPIView):
+    """
+    API endpoint that represents a list of theory lessons.
+    """
+    model = Quiz
+    serializer_class = QuizSerializer
+    queryset = Quiz.objects.all()
+
+
 def checkin(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -75,6 +94,14 @@ def checkin(request):
 def main(request, *args):
     courses = Course.objects.all()
     return render(request, "main.html", {'courses': courses})
+
+
+def quiz(request, pk):
+    try:
+        quiz_pk = Quiz.objects.get(pk=pk)
+    except Quiz.DoesNotExist:
+        raise Http404("Нет такого теста")
+    return render(request, "quiz.html", {"quiz": quiz_pk})
 
 
 class FacebookLogin(SocialLoginView):

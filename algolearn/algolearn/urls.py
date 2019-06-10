@@ -31,8 +31,11 @@ urlpatterns = [
     url(r'^api/courses/(?P<pk>\d+)/$', CourseDetail.as_view(), name='user-detail'),
     url(r'^api/lectures/$', TheoryList.as_view(), name='lectures-list'),
     url(r'^api/lectures/(?P<pk>\d+)/$', TheoryDetail.as_view(), name='lectures-detail'),
+    url(r'^api/quizes/$', QuizList.as_view(), name='lectures-list'),
+    url(r'^api/quizes/(?P<pk>\d+)/$', QuizDetail.as_view(), name='lectures-detail'),
+    url(r'^quiz/(?P<pk>\d+)/$', quiz, name='lectures-detail'),
 
-    # Override urls
+
     url(r'^accounts/login/$', main, name='login'),
     url(r'^checkin$', checkin, name='checkin'),
     url(r'^api/auth/registration/account-email-verification-sent/', null_view, name='account_email_verification_sent'),
