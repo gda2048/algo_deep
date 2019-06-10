@@ -44,8 +44,8 @@ class Lesson(models.Model):
 
 
 class Quiz(Lesson):
-    questions = JSONField()
-    answers = JSONField()
+    questions = JSONField(null=True)
+    answers = JSONField(null=True)
 
     class Meta:
         """
