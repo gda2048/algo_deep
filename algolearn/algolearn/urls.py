@@ -27,6 +27,8 @@ schema_view = get_swagger_view(title='Algolearn API')
 
 
 urlpatterns = [
+    url(r'^courses/$', CourseList.as_view(), name='user-list'),
+    url(r'^courses/(?P<pk>\d+)/$', CourseDetail.as_view(), name='user-detail'),
     # Override urls
     url(r'^accounts/login/$', main, name='login'),
     url(r'^checkin$', checkin, name='checkin'),

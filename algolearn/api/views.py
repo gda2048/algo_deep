@@ -2,14 +2,33 @@ from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
 from allauth.socialaccount.providers.twitter.views import TwitterOAuthAdapter
 from rest_auth.registration.views import SocialLoginView
 from rest_auth.social_serializers import TwitterLoginSerializer
-from rest_framework import status
+from rest_framework import status, generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.shortcuts import render, redirect
 from .models import *
 from .forms import SignUpForm
+from .serializers import CourseSerializer
 import requests
 import json
+
+
+class CourseList(generics.ListCreateAPIView):
+    """
+    API endpoint that represents a list of course.
+    """
+    model = Course
+    serializer_class = CourseSerializer
+    queryset = Course.objects.all()
+
+
+class CourseDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    API endpoint that represents a single course.
+    """
+    model = Course
+    serializer_class = CourseSerializer
+    queryset = Course.objects.all()
 
 
 def checkin(request):
