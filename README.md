@@ -65,3 +65,11 @@ python3.7 manage.py createsuperuser
     'email': 'goncharovdma@gmail.com'
     'password': 'algolearn'
 ```
+### Heroku
+_in algo_deep repo:_
+```bash
+heroku login
+heroku git:remote algo_deep
+git push heroku dev:master # pushing
+
+```
