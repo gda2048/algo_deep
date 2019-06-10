@@ -12,6 +12,9 @@ class Course(models.Model):
     photo = models.CharField('Фотография',max_length=100, null=True)
     topic = models.CharField('Тема', max_length=50)
 
+    def __str__(self):
+        return str(self.name)+' '+str(self.id)
+
     class Meta:
         """
         Course model settings
@@ -37,10 +40,10 @@ class Lesson(models.Model):
         db_table = 'lessons'
         verbose_name = 'Урок'
         verbose_name_plural = 'Уроки'
+        abstract = True
 
 
 class Quiz(Lesson):
-    lesson = models.OneToOneField(Lesson, parent_link=True, on_delete=models.CASCADE)
     questions = JSONField()
     answers = JSONField()
 
@@ -54,7 +57,6 @@ class Quiz(Lesson):
 
 
 class Theory(Lesson):
-    lesson = models.OneToOneField(Lesson, parent_link=True, on_delete=models.CASCADE)
     theory_link = models.URLField(null=True)
 
     class Meta:
@@ -64,3 +66,4 @@ class Theory(Lesson):
         db_table = 'lections'
         verbose_name = 'теория'
         verbose_name_plural = 'теория'
+
