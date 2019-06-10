@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/algolearn.css' %}" type="text/css">
+    <!--<link href="css/aos.css" rel="stylesheet"> SCROLLER-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body class="bg-algolearn-grey">
+<div class="bg-algolearn-yellow container-fluid text-center min-vh-100">
+    <nav class="navbar bg-algolearn-navbar sticky-top row">
+        <div class="container-fluid font-algolearn-arial">
+            <a href="#" class="navbar-brand col-12 col-sm-4 col-md-4 col-lg-2">
+                <img alt="logo" class="img-fluid mw-100" src="{% static 'images/logo.png' %}">
+            </a>
+
+        </div>
+    </nav>
+
+
+    <!-- templates/registration/login.html -->
+    <h2>Email подтвержден</h2>
+    <div class="container col-lg-2 col-auto text-algolearn-grey bg-algolearn-red rounded-pill text-center">
+        <a href="{% url 'main' %}" class="nav-link">На главную</a>
+    </div>
+
+</div>
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

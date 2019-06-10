@@ -36,7 +36,7 @@ def checkin(request):
 
 
 
-def main(request):
+def main(request, *args):
     courses = Course.objects.all()
     return render(request, "main.html", {'courses': courses})
 
