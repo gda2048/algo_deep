@@ -1,0 +1,95 @@
+
+{% extends "admin/base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+
+
+{% block extrastyle %}
+<style>
+
+  body {
+    font-family:
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          Roboto,
+          Helvetica,
+          Arial,
+          sans-serif,
+          'Apple Color Emoji',
+          'Segoe UI Emoji',
+          'Segoe UI Symbol';
+      background-color: rgba(240, 216, 121, 0.7);
+  }
+      #content-related{
+      display: none;
+  }
+
+  #content-main{
+      float: none;
+  }
+  #header {
+    height: 100px;
+    background: rgba(36, 136, 136, 1);
+  }
+  .module h2, .module caption, .inline-group h2 {
+    background-color: rgba(36, 136, 136, 1) ;
+  }
+  div.breadcrumbs {
+    color: black;
+    background: rgba(230, 230, 230, 1);
+  }
+
+  a:link, a:visited {
+    color: rgba(36, 136, 136, 1);
+    font-size: 17px;
+  }
+  .selector-chosen h2 {
+    background: #585853 !important;
+  }
+  .button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: red;
+    font-size: 15px;
+  }
+  .button.default, input[type=submit].default, .submit-row input.default {
+    background: red;
+  }
+  .button:active, input[type=submit]:active, input[type=button]:active, .button:focus, input[type=submit]:focus, input[type=button]:focus, .button:hover, input[type=submit]:hover, input[type=button]:hover {
+    background: red;
+    opacity: 0.8;
+  }
+  .button.default:active, input[type=submit].default:active, .button.default:focus, input[type=submit].default:focus, .button.default:hover, input[type=submit].default:hover {
+    background: red;
+    opacity: 0.8;
+  }
+  .breadcrumbs a{
+    color: black;
+    background: rgba(230, 230, 230, 1);
+  }
+
+</style>
+{% endblock %}
+
+
+
+{% block usertools %}
+    <div id="return">
+    <button style="background-color: red; border: none; border-radius: 5px; padding: 5%"><strong><a style="font-size: 20px" href="/">Вернуться обратно на главную</a></strong></button>
+    </div>
+{% endblock %}
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+
+<h1 id="site-name">
+    <a href="{% url 'main' %}">
+        <img src="{% static 'images/logo.png' %}" height="80px" />
+    </a>
+</h1>
+
+{% endblock %}
+
+{% block nav-global %}
+{% endblock %}
+

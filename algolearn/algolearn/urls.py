@@ -24,7 +24,8 @@ from allauth.account.views import ConfirmEmailView
 
 
 schema_view = get_swagger_view(title='Algolearn API')
-
+admin.site.site_title = ""
+admin.site.index_title = ""
 
 urlpatterns = [
     url(r'^api/courses/$', CourseList.as_view(), name='user-list'),

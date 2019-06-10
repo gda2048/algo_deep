@@ -24,6 +24,14 @@
             <a href="#" class="navbar-brand col-12 col-sm-4 col-md-4 col-lg-2">
                 <img alt="logo" class="img-fluid mw-100" src="{% static 'images/logo.png' %}">
             </a>
+            {% if request.user.is_staff and request.user.is_active %}
+             <div class="container offset-lg-5 col-lg-2 col-auto text-algolearn-red bg-algolearn-grey rounded-pill text-center">
+                <a href="{% url 'logout' %}" class="nav-link">Выйти</a>
+            </div>
+            <div class="container col-lg-2 col-auto text-algolearn-grey bg-algolearn-red rounded-pill text-center">
+                <a href="/admin" class="nav-link">Администрирование</a>
+            </div>
+            {% else %}
             {% if user.is_authenticated %}
             <div class="container offset-lg-5 col-lg-2 col-auto text-algolearn-red bg-algolearn-grey rounded-pill text-center">
                 <a href="{% url 'logout' %}" class="nav-link">Выйти</a>
@@ -40,6 +48,7 @@
             <div class="container col-lg-2 col-auto text-algolearn-grey bg-algolearn-red rounded-pill text-center">
                 <a href="{% url 'checkin' %}" class="nav-link">Зарегистрироваться</a>
             </div>
+            {% endif %}
             {% endif %}
             <!--
             change in Учиться offset-lg-4
