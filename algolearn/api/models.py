@@ -13,7 +13,7 @@ class Course(models.Model):
     topic = models.CharField('Тема', max_length=50)
 
     def __str__(self):
-        return str(self.name)+' '+str(self.id)
+        return str(self.name)
 
     class Meta:
         """
@@ -31,7 +31,6 @@ class Lesson(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField('Название', max_length=30, unique=True)
     description = models.TextField('Описание', blank=True)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
     class Meta:
         """
@@ -46,6 +45,10 @@ class Lesson(models.Model):
 class Quiz(Lesson):
     questions = JSONField(null=True)
     answers = JSONField(null=True)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='quiz_lessons')
+
+    def __str__(self):
+        return str(self.name)
 
     class Meta:
         """
@@ -58,6 +61,10 @@ class Quiz(Lesson):
 
 class Theory(Lesson):
     theory_link = models.URLField(null=True)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='theory_lessons')
+
+    def __str__(self):
+        return str(self.name)
 
     class Meta:
         """

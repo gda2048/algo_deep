@@ -8,12 +8,12 @@ from rest_framework.response import Response
 from django.shortcuts import render, redirect
 from .models import *
 from .forms import SignUpForm
-from .serializers import CourseSerializer
+from .serializers import CourseSerializer, TheorySerializer, QuizSerializer
 import requests
 import json
 
 
-class CourseList(generics.ListCreateAPIView):
+class CourseList(generics.ListAPIView):
     """
     API endpoint that represents a list of course.
     """
@@ -22,13 +22,31 @@ class CourseList(generics.ListCreateAPIView):
     queryset = Course.objects.all()
 
 
-class CourseDetail(generics.RetrieveUpdateDestroyAPIView):
+class CourseDetail(generics.RetrieveAPIView):
     """
     API endpoint that represents a single course.
     """
     model = Course
     serializer_class = CourseSerializer
     queryset = Course.objects.all()
+
+
+class TheoryDetail(generics.RetrieveAPIView):
+    """
+    API endpoint that represents a single theory lesson.
+    """
+    model = Theory
+    serializer_class = TheorySerializer
+    queryset = Theory.objects.all()
+
+
+class TheoryList(generics.ListAPIView):
+    """
+    API endpoint that represents a list of theory lessons.
+    """
+    model = Theory
+    serializer_class = TheorySerializer
+    queryset = Theory.objects.all()
 
 
 def checkin(request):
@@ -52,7 +70,6 @@ def checkin(request):
     else:
         form = SignUpForm()
     return render(request, 'registration/registration.html', {'form': form})
-
 
 
 def main(request, *args):
