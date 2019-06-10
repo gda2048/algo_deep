@@ -38,6 +38,7 @@ urlpatterns = [
 ]
 
 urlpatterns += [
+    url('r^$', main, name='main'),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^', include('django.contrib.auth.urls')),
     url(r'^schema$', schema_view),
