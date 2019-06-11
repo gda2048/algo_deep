@@ -113,12 +113,6 @@ def email_confirmed_(request, email_address, **kwargs):
     user.save()
 
 
-@verified_email_required
-def main_req(request, *args):
-    courses = Course.objects.all()
-    return render(request, "main.html", {'courses': courses})
-
-
 def main(request, *args):
     courses = Course.objects.all()
     return render(request, "main.html", {'courses': courses})
