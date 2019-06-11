@@ -9,7 +9,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from .models import *
 from .forms import SignUpForm
 from django.dispatch import receiver
@@ -70,6 +70,18 @@ class QuizList(generics.ListAPIView):
     model = Quiz
     serializer_class = QuizSerializer
     queryset = Quiz.objects.all()
+
+
+@verified_email_required
+def profile(request):
+    if request.method == 'POST' and request.user.is_authenticated:
+        request.user.first_name = request.POST.get('first_name')
+        request.user.last_name = request.POST.get('last_name')
+        request.user.username = request.POST.get('username')
+        print(request.POST.get('telebot'))
+        request.user.save()
+        return HttpResponseRedirect("/")
+    return render(request, "profile.html")
 
 
 def checkin(request):

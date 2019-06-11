@@ -49,6 +49,7 @@ urlpatterns += [
     url(r'^main$', main_req, name='main'),
     url(r'^$', main, name='main'),
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^profile/$', profile, name='profile'),
     url(r'^', include('django.contrib.auth.urls')),
     url(r'^schema$', schema_view),
     path('admin/', admin.site.urls),
