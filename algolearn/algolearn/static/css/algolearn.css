@@ -76,3 +76,11 @@
 .bg-algolearn-gradient {
     background: linear-gradient(to right, rgba(230, 230, 230, 1) 10%, rgba(36, 136, 136, 1));
 }
+
+.float_left {
+	float:left;
+}
+
+.w-40 {
+  width: 40% !important;
+}
