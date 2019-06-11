@@ -72,10 +72,9 @@
 {% endblock %}
 
 
-
 {% block usertools %}
     <div id="return">
-    <button style="background-color: red; border: none; border-radius: 5px; padding: 5%"><strong><a style="font-size: 20px" href="/">Вернуться обратно на главную</a></strong></button>
+    <a href="/"><button style="background-color: red; border: none; border-radius: 5px; padding: 5%"><strong style="font-size: 20px">Вернуться обратно на главную</strong> </button></a>
     </div>
 {% endblock %}
 {% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}

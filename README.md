@@ -69,7 +69,7 @@ python3.7 manage.py createsuperuser
 _in algo_deep repo:_
 ```bash
 heroku login
-heroku git:remote algo_deep
+heroku git:remote algo2048demo
 git push heroku dev:master # pushing
 
 ```

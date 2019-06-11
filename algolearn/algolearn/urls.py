@@ -46,6 +46,7 @@ urlpatterns = [
 ]
 
 urlpatterns += [
+    url(r'^main$', main_req, name='main'),
     url(r'^$', main, name='main'),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^', include('django.contrib.auth.urls')),

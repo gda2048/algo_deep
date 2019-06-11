@@ -1,17 +1,21 @@
 from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
 from allauth.socialaccount.providers.twitter.views import TwitterOAuthAdapter
+from allauth.account.signals import email_confirmed
+from allauth.account.decorators import verified_email_required
 from rest_auth.registration.views import SocialLoginView
 from rest_auth.social_serializers import TwitterLoginSerializer
 from rest_framework import status, generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.http import Http404
 from .models import *
 from .forms import SignUpForm
+from django.dispatch import receiver
 from .serializers import CourseSerializer, TheorySerializer, QuizSerializer
-import requests
 import json
+import requests
 
 
 class CourseList(generics.ListAPIView):
@@ -84,11 +88,23 @@ def checkin(request):
             except (requests.exceptions.ConnectionError, requests.exceptions.Timeout):
                 res = "No response or Timeout"
             print(res)
-            print(url)
             return redirect('/')
     else:
         form = SignUpForm()
     return render(request, 'registration/registration.html', {'form': form})
+
+
+@receiver(email_confirmed)
+def email_confirmed_(request, email_address, **kwargs):
+    user = User.objects.get(email=email_address.email)
+    user.is_active = True
+    user.save()
+
+
+@verified_email_required
+def main_req(request, *args):
+    courses = Course.objects.all()
+    return render(request, "main.html", {'courses': courses})
 
 
 def main(request, *args):
