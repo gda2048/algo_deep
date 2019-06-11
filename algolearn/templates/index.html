@@ -13,6 +13,27 @@
   </style>
 </head>
 <body>
+
+    <nav class="navbar bg-algolearn-navbar sticky-top row font-algolearn-arial">
+            <a href="#" class="navbar-brand col-12 col-sm-4 col-md-4 col-lg-2">
+                <img alt="logo" class="img-fluid mw-100" src="{% static 'images/logo.png' %}">
+            </a>
+            {% if user.is_authenticated %}
+                <div class="container offset-lg-5 col-lg-2 col-auto text-algolearn-red bg-algolearn-grey rounded-pill text-center">
+                    <a href="{% url 'account_email' %}" class="nav-link">Сменить email</a>
+                </div>
+                <div class="container offset-lg-5 col-lg-2 col-auto text-algolearn-red bg-algolearn-grey rounded-pill text-center">
+                    <a href="{% url 'logout' %}" class="nav-link">Выйти</a>
+                </div>
+            {% else %}
+                <div class="container offset-lg-5 col-lg-2 col-auto text-algolearn-red bg-algolearn-grey rounded-pill text-center">
+                    <a href="{% url 'login' %}" class="nav-link">Выйти</a>
+                </div>
+                <div class="container offset-lg-5 col-lg-2 col-auto text-algolearn-red bg-algolearn-grey rounded-pill text-center">
+                    <a href="{% url 'checkin' %}" class="nav-link">Выйти</a>
+                </div>
+            {% endif %}
+    </nav>
   <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
   <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>
   <div style="width: 100px; height: 100px; background-color: red; margin: 10px;" data-aos="fade-up"></div>

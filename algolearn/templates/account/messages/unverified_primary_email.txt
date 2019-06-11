@@ -1,0 +1,2 @@
+{% load i18n %}
+{% blocktrans %}Ваш основной email должен быть подтвержден.{% endblocktrans %}

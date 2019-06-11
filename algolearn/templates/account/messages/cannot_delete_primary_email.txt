@@ -1,0 +1,4 @@
+{% load i18n %}
+{% blocktrans %}
+Нельзя удалить основную почту ({{email}})
+{% endblocktrans %}

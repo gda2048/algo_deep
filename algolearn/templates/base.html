@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html lang="ru">
+<head>
+    <title>{% block head_title %}{% endblock %}</title>
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/algolearn.css' %}" type="text/css">
+
+    {% block extra_head %}
+    {% endblock %}
+</head>
+<body class="bg-algolearn-grey text-center">
+<div class="min-vh-100 bg-algolearn-yellow container-fluid">
+    <nav class="navbar bg-algolearn-navbar sticky-top row">
+        <div class="container-fluid font-algolearn-arial">
+            <a href="#" class="navbar-brand col-12 col-sm-4 col-md-4 col-lg-2">
+                <img alt="logo" class="img-fluid mw-100" src="{% static 'images/logo.png' %}">
+            </a>
+
+            {% if user.is_authenticated %}
+                <div class="container offset-lg-5 col-lg-2 col-auto text-algolearn-red bg-algolearn-grey rounded-pill text-center">
+                    <a href="{% url 'main' %}" class="nav-link">Главная</a>
+                </div>
+
+                <div class="container col-lg-2 col-auto text-algolearn-grey bg-algolearn-red rounded-pill text-center">
+                    <a href="{% url 'logout' %}" class="nav-link">Выйти</a>
+                </div>
+            {% else %}
+                <div class="container offset-lg-5 col-lg-2 col-auto text-algolearn-red bg-algolearn-grey rounded-pill text-center">
+                    <a href="{% url 'login' %}" class="nav-link">Войти</a>
+                </div>
+
+                <div class="container col-lg-2 col-auto text-algolearn-grey bg-algolearn-red rounded-pill text-center">
+                    <a href="{% url 'checkin' %}" class="nav-link">Зарегистрироваться</a>
+                </div>
+            {% endif %}
+
+            <!--
+            change in Учиться offset-lg-4
+            <div class="container col-auto col-lg-1">
+                EN
+            </div>
+            -->
+        </div>
+    </nav>
+
+
+    {% block body %}
+        <br>
+        {% if messages %}
+
+            {% for message in messages %}
+                <div class="alert alert-primary alert-dismissible fade show mx-5" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+            {% endfor %}
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+    {% endblock %}
+    {% block extra_body %}
+    {% endblock %}
+</div>
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
+
+{% block content %}
+<h1>Подтвердите ваш аккаунт</h1>
+
+{% url 'account_email' as email_url %}
+
+<p>{% blocktrans %} Для того, чтобы просмотреть эту страницу нашего сайта вам нужно подтвердить свой аккаунт с помощью электронной почты.{% endblocktrans %}</p>
+
+<p>{% blocktrans %}
+    Мы отправили вам email с ссылкой. Нажмите на ссылку для того, чтобы подтвердить ваш аккаунт.
+    Если письмо не пришло в течении нескольких минут, то проверьте спам и свяжитесь с нами.
+{% endblocktrans %}</p>
+
+<p>{% blocktrans %}<strong>PS:</strong> Вы все еще можете <a href="{{ email_url }}">поменять ваш электронный адрес или получить еще раз письмо для подтверждения аккаунта</a>.{% endblocktrans %}</p>
+
+
+{% endblock %}
