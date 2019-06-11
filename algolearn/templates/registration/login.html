@@ -28,8 +28,10 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="btn bg-algolearn-red text-algolearn-grey" type="submit">Login</button>
+        <button class="btn bg-algolearn-red text-algolearn-grey" type="submit">войти</button>
     </form>
+    <br>
+    <a href="{%  url 'account_reset_password' %}">Забыли пароль?</a>
 </div>
 <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>

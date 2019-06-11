@@ -1,0 +1,13 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
+
+{% block content %}
+    <h1>{% trans "Подтвердите свой email" %}</h1>
+
+    <p>{% blocktrans %} Мы отправили вам письмо на электронную почту для подтверждения аккаунта.<br>
+        Нажмите на ссылку в этом письме, чтобы закончить процесс регистрации. Свяжитесь с нами, если не можете восстановить пароль{% endblocktrans %}</p>
+
+{% endblock %}

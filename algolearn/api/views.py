@@ -88,7 +88,7 @@ def checkin(request):
             except (requests.exceptions.ConnectionError, requests.exceptions.Timeout):
                 res = "No response or Timeout"
             print(res)
-            return redirect('/')
+            return redirect('/accounts/confirm-email/')
     else:
         form = SignUpForm()
     return render(request, 'registration/registration.html', {'form': form})

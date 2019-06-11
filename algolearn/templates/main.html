@@ -16,7 +16,18 @@
 
 <body class="bg-algolearn-grey">
 
+{% if messages %}
 
+            {% for message in messages %}
+                <div class="alert alert-primary alert-dismissible fade show mx-5" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+            {% endfor %}
+{% endif %}
 <div class="min-vh-100 bg-algolearn-yellow container-fluid">
 
     <nav class="navbar bg-algolearn-navbar sticky-top row">
