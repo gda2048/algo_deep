@@ -49,9 +49,12 @@ INSTALLED_APPS = [
     'allauth.account',
     'rest_auth.registration',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.twitter',
+    'allauth.socialaccount.providers.github',
     'admin_tools',
-    #   'allauth.socialaccount.providers.facebook',
-    #   'allauth.socialaccount.providers.twitter',
+
 ]
 
 MIDDLEWARE = [
@@ -181,7 +184,7 @@ AUTHENTICATION_BACKENDS = (
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 # The URL to redirect to after a successful e-mail confirmation, in case no user is logged in.
 # ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = reverse_lazy('account_confirm_complete')
