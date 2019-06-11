@@ -13,6 +13,7 @@ import os
 from decouple import config
 import dj_database_url
 import django_heroku
+import django.contrib.sites
 #django_heroku.settings(locals())
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -52,10 +53,19 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.twitter',
-    'allauth.socialaccount.providers.github',
     'admin_tools',
-
 ]
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'METHOD': 'oauth2',
+        'SCOPE': ['email'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'LOCALE_FUNC': lambda request: 'en_US',
+        'VERSION': 'v3.3'
+    },
+    'google': {},
+    'twitter': {}
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -181,16 +191,18 @@ AUTHENTICATION_BACKENDS = (
     # email login
     'allauth.account.auth_backends.AuthenticationBackend',
 )
-
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
-# The URL to redirect to after a successful e-mail confirmation, in case no user is logged in.
-# ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = reverse_lazy('account_confirm_complete')
+ACCOUNT_EMAIL_SUBJECT_PREFIX = 'ALGOLEARN '
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
+
 
 # The URL to redirect to after a successful e-mail confirmation, in case of an authenticated user.
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/login'
 # Set to None to use settings.LOGIN_REDIRECT_URL.
 # ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = reverse_lazy('account_confirm_complete')
