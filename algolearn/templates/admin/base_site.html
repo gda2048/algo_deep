@@ -74,7 +74,7 @@
 
 {% block usertools %}
     <div id="return">
-    <a href="/"><button style="background-color: red; border: none; border-radius: 5px; padding: 5%"><strong style="font-size: 20px">Вернуться обратно на главную</strong> </button></a>
+    <a href="{% url 'main' %}"><button style="background-color: red; border: none; border-radius: 5px; padding: 5%"><strong style="font-size: 20px">Вернуться обратно на главную</strong> </button></a>
     </div>
 {% endblock %}
 {% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}

@@ -21,7 +21,7 @@
 
     <nav class="navbar bg-algolearn-navbar sticky-top row">
         <div class="container-fluid font-algolearn-arial">
-            <a href="#" class="navbar-brand col-12 col-sm-4 col-md-4 col-lg-2">
+            <a href="{% url 'main' %}"  class="navbar-brand col-12 col-sm-4 col-md-4 col-lg-2">
                 <img alt="logo" class="img-fluid mw-100" src="{% static 'images/logo.png' %}">
             </a>
             {% if request.user.is_staff and request.user.is_active %}

@@ -37,7 +37,7 @@ urlpatterns = [
     url(r'^quiz/(?P<pk>\d+)/$', quiz, name='lectures-detail'),
 
 
-    url(r'^accounts/login/$', main, name='login'),
+    url(r'^accounts/login/', alogin, name='login'),
     url(r'^checkin$', checkin, name='checkin'),
     url(r'^api/auth/registration/account-email-verification-sent/', null_view, name='account_email_verification_sent'),
     url(r'^api/auth/registration/account-confirm-email/(?P<key>[-:\w]+)/$', ConfirmEmailView.as_view(), name='account_confirm_email'),

@@ -112,6 +112,10 @@ def main(request, *args):
     return render(request, "main.html", {'courses': courses})
 
 
+def alogin(request, *args):
+    return redirect("/login")
+
+
 def quiz(request, pk):
     try:
         quiz_pk = Quiz.objects.get(pk=pk)
