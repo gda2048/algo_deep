@@ -194,8 +194,9 @@ SOCIALACCOUNT_PROVIDERS = \
             'updated_time'],
         'EXCHANGE_TOKEN': True,
         'LOCALE_FUNC': lambda request: 'kr_KR',
-        'VERIFIED_EMAIL': False,
-        'VERSION': 'v2.4'}}
+        'VERIFIED_EMAIL': True,
+        'VERSION': 'v2.4'}
+     }
 
 
 AUTHENTICATION_BACKENDS = (
