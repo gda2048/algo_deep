@@ -48,7 +48,6 @@ urlpatterns = [
 
 urlpatterns += [
     url(r'^$', main, name='main'),
-    url(r'^index/$', TemplateView.as_view(template_name='index.html')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^profile/$', profile, name='profile'),
     url(r'^', include('django.contrib.auth.urls')),
