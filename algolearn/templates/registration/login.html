@@ -31,6 +31,12 @@
         <button class="btn bg-algolearn-red text-algolearn-grey" type="submit">войти</button>
     </form>
     <br>
+    <h3>Войти c помощью</h3><br>
+    <div>
+    <a href="{% url 'facebook_login' %}" class="btn bg-transparent" ><img alt="Facebook" class="img-responsive w-25 h-25" src="{% static "images/fb.png" %}"></a>
+    <a href="{% url 'google_login' %}" class="btn bg-transparent" ><img alt="Facebook" class="img-responsive w-25 h-25" src="{% static "images/google.png" %}"></a>
+    </div>
+    <br>
     <a href="{%  url 'account_reset_password' %}">Забыли пароль?</a>
 </div>
 <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>

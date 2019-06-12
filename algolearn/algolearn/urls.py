@@ -15,8 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.views.generic import TemplateView
 from django.conf.urls import url, include
 from rest_framework_swagger.views import get_swagger_view
+try:
+    from algolearn.api.views import *
+except Exception:
+    pass
 from api.views import *
 
 
@@ -28,6 +33,11 @@ admin.site.site_title = ""
 admin.site.index_title = ""
 
 urlpatterns = [
+    url(r'^telebot/(?P<pk>[\w\-]+)/$', BotDetail.as_view(), name='agetbot'),
+    url(r'^telebot/$', BotCreate.as_view(), name='add_bot'),
+]
+
+urlpatterns += [
     url(r'^api/courses/$', CourseList.as_view(), name='user-list'),
     url(r'^api/courses/(?P<pk>\d+)/$', CourseDetail.as_view(), name='user-detail'),
     url(r'^api/lectures/$', TheoryList.as_view(), name='lectures-list'),

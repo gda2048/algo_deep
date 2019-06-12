@@ -13,7 +13,7 @@ from django.http import Http404, HttpResponseRedirect
 from .models import *
 from .forms import SignUpForm
 from django.dispatch import receiver
-from .serializers import CourseSerializer, TheorySerializer, QuizSerializer
+from .serializers import CourseSerializer, TheorySerializer, QuizSerializer, BotSerializer
 import json
 import requests
 
@@ -43,6 +43,32 @@ class TheoryDetail(generics.RetrieveAPIView):
     model = Theory
     serializer_class = TheorySerializer
     queryset = Theory.objects.all()
+
+
+class BotDetail(generics.RetrieveAPIView):
+    """
+    API endpoint that represents a single bot detail
+    """
+    model = ChatBot
+    serializer_class = BotSerializer
+    queryset = ChatBot.objects.all()
+
+
+class BotCreate(generics.CreateAPIView):
+    """
+    API endpoint that represents a single bot detail
+    """
+    model = ChatBot
+    serializer_class = BotSerializer
+    queryset = ChatBot.objects.all()
+
+    def create(self, request, *args, **kwargs):
+        ChatBot.objects.filter(login=request.data['login']).update(bot_id=request.data['bot_id'])
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
 class TheoryList(generics.ListAPIView):
@@ -78,10 +104,20 @@ def profile(request):
         request.user.first_name = request.POST.get('first_name')
         request.user.last_name = request.POST.get('last_name')
         request.user.username = request.POST.get('username')
-        print(request.POST.get('telebot'))
+        telebot = request.POST.get('telebot')
+        if telebot:
+            try:
+                ChatBot.objects.create(user=request.user, login=telebot).save()
+            except Exception:
+                ChatBot.objects.filter(user=request.user).update(login=telebot)
+
         request.user.save()
         return HttpResponseRedirect("/")
-    return render(request, "profile.html")
+    telebot = ChatBot.objects.filter(user=request.user)
+    if telebot:
+        return render(request, "profile.html", {"bot": telebot[0].login})
+    else:
+        return render(request, "profile.html")
 
 
 def checkin(request):
@@ -99,7 +135,6 @@ def checkin(request):
                 res = requests.post(url, data=json.dumps(data), headers=headers, timeout=5)
             except (requests.exceptions.ConnectionError, requests.exceptions.Timeout):
                 res = "No response or Timeout"
-            print(res)
             return redirect('/accounts/confirm-email/')
     else:
         form = SignUpForm()
@@ -147,3 +182,10 @@ def null_view(request):
 @api_view()
 def complete_view(request):
     return Response("Email account is activated")
+
+
+
+
+
+
+
