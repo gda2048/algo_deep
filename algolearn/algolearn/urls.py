@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.views.generic import TemplateView
 from django.conf.urls import url, include
 from rest_framework_swagger.views import get_swagger_view
 from api.views import *
@@ -47,6 +48,7 @@ urlpatterns = [
 
 urlpatterns += [
     url(r'^$', main, name='main'),
+    url(r'^index/$', TemplateView.as_view(template_name='index.html')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^profile/$', profile, name='profile'),
     url(r'^', include('django.contrib.auth.urls')),

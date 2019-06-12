@@ -55,17 +55,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.twitter',
     'admin_tools',
 ]
-SOCIALACCOUNT_PROVIDERS = {
-    'facebook': {
-        'METHOD': 'oauth2',
-        'SCOPE': ['email'],
-        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
-        'LOCALE_FUNC': lambda request: 'en_US',
-        'VERSION': 'v3.3'
-    },
-    'google': {},
-    'twitter': {}
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -184,6 +173,30 @@ DEFAULT_TO_EMAIL = 'gda2048'
 
 # django-allauth settings
 SITE_ID = 1
+
+
+SOCIALACCOUNT_PROVIDERS = \
+    {'facebook':
+       {'METHOD': 'oauth2',
+        'SCOPE': ['email','public_profile', 'user_friends'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'verified',
+            'locale',
+            'timezone',
+            'link',
+            'gender',
+            'updated_time'],
+        'EXCHANGE_TOKEN': True,
+        'LOCALE_FUNC': lambda request: 'kr_KR',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v2.4'}}
+
 
 AUTHENTICATION_BACKENDS = (
     # default
