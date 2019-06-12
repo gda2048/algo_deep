@@ -1,4 +1,4 @@
-from .models import Course, Theory, Quiz
+from .models import Course, Theory, Quiz, ChatBot
 from rest_framework import serializers
 
 
@@ -8,7 +8,7 @@ class CourseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ('id', 'name', 'description', 'topic', 'quiz_lessons', 'theory_lessons')
+        fields = ('id', 'name', 'description', 'topic', 'quiz_lessons', 'theory_lessons', 'type', 'time')
 
 
 class QuizSerializer(serializers.ModelSerializer):
@@ -22,4 +22,11 @@ class TheorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Theory
-        fields = ('id', 'name', 'description', 'theory_link', 'course')
+        fields = ('id', 'name', 'description', 'theory_link', 'link_description', 'course')
+
+
+class BotSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ChatBot
+        fields = ('login', 'bot_id')

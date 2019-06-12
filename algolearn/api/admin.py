@@ -6,3 +6,4 @@ from .models import *
 admin.site.register(Course)
 admin.site.register(Quiz)
 admin.site.register(Theory)
+admin.site.register(ChatBot)

@@ -14,7 +14,8 @@ from decouple import config
 import dj_database_url
 import django_heroku
 import django.contrib.sites
-#django_heroku.settings(locals())
+
+# django_heroku.settings(locals())
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +26,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
-
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
@@ -160,7 +160,6 @@ STATICFILES_DIRS = (
 )
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
@@ -177,27 +176,33 @@ SITE_ID = 1
 
 SOCIALACCOUNT_PROVIDERS = \
     {'facebook':
-       {'METHOD': 'oauth2',
-        'SCOPE': ['email','public_profile', 'user_friends'],
-        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
-        'FIELDS': [
-            'id',
-            'email',
-            'name',
-            'first_name',
-            'last_name',
-            'verified',
-            'locale',
-            'timezone',
-            'link',
-            'gender',
-            'updated_time'],
-        'EXCHANGE_TOKEN': True,
-        'LOCALE_FUNC': lambda request: 'kr_KR',
-        'VERIFIED_EMAIL': True,
-        'VERSION': 'v2.4'}
-     }
-
+         {'METHOD': 'oauth2',
+          'SCOPE': ['email', 'public_profile', 'user_friends'],
+          'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+          'FIELDS': [
+              'id',
+              'email',
+              'name',
+              'first_name',
+              'last_name',
+              'verified',
+              'locale',
+              'timezone',
+              'link',
+              'gender',
+              'updated_time'],
+          'EXCHANGE_TOKEN': True,
+          'LOCALE_FUNC': lambda request: 'kr_KR',
+          'VERIFIED_EMAIL': True,
+          'VERSION': 'v2.4'},
+     'google': {
+         'SCOPE': [
+             'profile',
+             'email',
+         ],
+         'AUTH_PARAMS': {
+             'access_type': 'online',
+         }}}
 
 AUTHENTICATION_BACKENDS = (
     # default
@@ -213,7 +218,6 @@ ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_EMAIL_SUBJECT_PREFIX = 'ALGOLEARN '
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
-
 
 # The URL to redirect to after a successful e-mail confirmation, in case of an authenticated user.
 LOGIN_REDIRECT_URL = '/'
