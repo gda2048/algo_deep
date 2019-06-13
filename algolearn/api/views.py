@@ -154,6 +154,12 @@ def main(request, *args):
     return render(request, "main.html", {'courses': courses})
 
 
+@verified_email_required
+def list_courses(request, *args):
+    courses = Course.objects.all()
+    return render(request, "list_course.html", {'courses': courses})
+
+
 def alogin(request, *args):
     return redirect("/login")
 
