@@ -22,6 +22,10 @@
     color: rgba(231, 71, 94, 1);
 }
 
+.text-algolearn-green {
+    color: rgba(36, 136, 136, 1);
+}
+
 .bg-algolearn-yellow {
     background-color: rgba(240, 216, 121, 0.7);
 }
@@ -119,4 +123,41 @@
 
 .mt-temp {
 	margin-top: 5%;
+}
+
+
+.w-300-px {
+	width: 300px;
+}
+
+.reg-form ul {
+	display: none;
+}
+
+.reg-form span {
+	display: none;
+}
+
+.reg-form p {
+	display: block;
+	width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.reg-form input{
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  
 }
