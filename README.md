@@ -1,5 +1,12 @@
 ## AlgoLearn
-Better algo_learning system
+Algolearn.  What is it?
+ If you are a student, teacher, or just a person who wants to understand the algorithms, their structure, to know why they are needed, then you should know about our project.
+ We are the Algolearn team, which has made a learning platform for you on algorithms, where you can become a student or teacher, receive or transfer your knowledge.
+ How it works?
+ You register, choose a course, get marks for passing it, test your knowledge during tests.
+ The teacher can create his course and start to supervise the “class”, a group of people who have chosen your course.
+ That's it, a brief excursion into our world of algorithms.
+ Thank you for your attention.
 ----
 #### python3.7
 
