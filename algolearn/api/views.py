@@ -184,8 +184,9 @@ def quiz(request, pk):
                         sol = Solution.objects.filter(user=request.user, quiz=quiz_pk)
                         if len(sol):
                             return render(request, "quiz.html",
-                                          {"quiz": q, 'error': 'Идеально ' + str(res.res[0]) + ' scores получено',
+                                          {"quiz": q, 'error': "Идеально. Еще одно решение. Баллы засчитаны уже за первое",
                                            'user_ans': request.POST['editor'], 'course': quiz_pk.course.id})
+                        Solution.objects.create(user=request.user, quiz=quiz_pk, res=res.res[0])
                         return render(request, "quiz.html",
                                       {"quiz": q, 'error': 'Идеально '+str(res.res[0])+' scores получено', 'user_ans': request.POST['editor'], 'course': quiz_pk.course.id})
                 except TimeoutError:
@@ -211,9 +212,11 @@ def quiz(request, pk):
                 user_ans = {"answers": [{"answer": [request.POST['text']]}]}
                 res = coderunner.Checker(quiz_pk.questions, quiz_pk.answers, user_ans)
                 if res.res == [int(quiz_pk.answers['answers'][0]['score'])]:
-                    print(1)
+                    sol = Solution.objects.filter(user=request.user, quiz=quiz_pk)
+                    if len(sol):
+                        return render(request, "quiz.html", {"quiz": q, 'error': 'Идеально. Еще одно решение. Баллы засчитаны уже за первое','user_ans': '', 'course': quiz_pk.course.id})
+                    Solution.objects.create(user=request.user, quiz=quiz_pk, res=res.res[0])
                     return render(request, "quiz.html", {"quiz": q, 'error': 'Идеально ' + str(res.res[0]) + ' scores получено','user_ans': '', 'course': quiz_pk.course.id})
-
             return render(request, "quiz.html", {"quiz": q, 'error': 'Еще стоит поработать', 'user_ans': '', 'course': quiz_pk.course.id})
     except Quiz.DoesNotExist:
         raise Http404("Нет такого теста")
