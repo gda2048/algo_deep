@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/algolearn.css' %}" type="text/css">
+    <!--<link href="css/aos.css" rel="stylesheet"> SCROLLER-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body class="bg-algolearn-grey">
+
+<div class=" bg-algolearn-yellow container-fluid">
+
+    <nav class="navbar bg-algolearn-navbar sticky-top row">
+        <div class="container-fluid font-algolearn-arial">
+            <a href="{% url 'main' %}"  class="navbar-brand col-12 col-sm-4 col-md-4 col-lg-2">
+                <img alt="logo" class="img-fluid mw-100" src="{% static 'images/logo.png' %}">
+            </a>
+        </div>
+    </nav>
+
+
+</div>
+
+    {% for course in courses %}
+    <div class="card offset-3 col-6 text-center my-5 rounded">
+        <div class="card-header w-100 border-0 bg-transparent h-20 d-flex align-items-center justify-content-center">
+            <h1 class="d-none d-md-block">{{ course.name }}</h1>
+            <h5 class="d-md-none">{{ course.name }}</h5>
+        </div>
+        <div class="card-body h-50">
+            <img class="card-img-top mw-100 mh-100 h-auto mb-5" src={{course.photo}}>
+        </div>
+        <footer class="w-100 h-30">
+            <div class="card-text">
+                <p class="d-none d-md-block">{{course.description}}</p>
+                <small class="d-md-none">{{course.description}}</small>
+            </div>
+            <br>
+            <a href="{% url 'course' pk=course.id %}" class="btn btn-light btn-border-algolearn-green">Начать курс</a>
+        </footer>
+    </div>
+    {% endfor %}
+
+
+
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>
