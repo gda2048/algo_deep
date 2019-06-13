@@ -170,3 +170,48 @@ a{
 }
 
  .big-checkbox {width: 30px; height: 30px;}
+ 
+ 
+ .list-group-item {
+  user-select: none;
+}
+
+ .list-group input[type="radio"] {
+  display: none;
+}
+ 
+ .list-group input[type="radio"] + .list-group-item {
+  cursor: pointer;
+   background-color:  rgba(36, 136, 136, 1);
+   color: rgba(230, 230, 230, 1);
+}
+
+ .list-group input[type="radio"] + .list-group-item:before {
+  content: "\2022";
+  color: transparent;
+  font-weight: bold;
+  margin-right: 1em;
+ 
+}
+
+.list-group input[type="radio"]:checked + .list-group-item {
+  background-color: rgba(231, 71, 94, 1);
+  color: #FFF;
+}
+
+.list-group input[type="radio"]:checked + .list-group-item:before {
+  color: inherit;
+}
+ 
+ 
+.mt-temp-2 {
+	margin-top: 3%; 
+}
+
+ul {
+	list-style-type: none;
+}
+
+
+
+

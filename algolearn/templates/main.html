@@ -36,27 +36,27 @@
             </a>
             {% if request.user.is_staff and request.user.is_active %}
              <div class="container offset-lg-5 col-lg-2 col-auto text-algolearn-red bg-algolearn-grey rounded-pill text-center">
-                <a href="{% url 'logout' %}" class="nav-link">Выйти</a>
+                <a href="{% url 'logout' %}" class="nav-link text-algolearn-red">Выйти</a>
             </div>
             <div class="container col-lg-2 col-auto text-algolearn-grey bg-algolearn-red rounded-pill text-center">
-                <a href="/admin" class="nav-link">Администрирование</a>
+                <a href="/admin" class="nav-link text-algolearn-grey">Администрирование</a>
             </div>
             {% else %}
             {% if user.is_authenticated %}
             <div class="container offset-lg-5 col-lg-2 col-auto text-algolearn-red bg-algolearn-grey rounded-pill text-center">
-                <a href="{% url 'logout' %}" class="nav-link">Выйти</a>
+                <a href="{% url 'logout' %}" class="nav-link text-algolearn-red">Выйти</a>
             </div>
 
             <div class="container col-lg-2 col-auto text-algolearn-grey bg-algolearn-red rounded-pill text-center">
-                <a href="{% url 'profile' %}" class="nav-link">{{user.username}}</a>
+                <a href="{% url 'profile' %}" class="nav-link text-algolearn-grey">{{user.username}}</a>
             </div>
             {% else %}
             <div class="container offset-lg-5 col-lg-2 col-auto text-algolearn-red bg-algolearn-grey rounded-pill text-center">
-                <a href="{% url 'login' %}" class="nav-link text-algolearn-green">Войти</a>
+                <a href="{% url 'login' %}" class="nav-link text-algolearn-red">Войти</a>
             </div>
 
             <div class="container col-lg-2 col-auto text-algolearn-grey bg-algolearn-red rounded-pill text-center">
-                <a href="{% url 'account_signup' %}" class="nav-link">Зарегистрироваться</a>
+                <a href="{% url 'account_signup' %}" class="nav-link text-algolearn-grey">Зарегистрироваться</a>
             </div>
             {% endif %}
             {% endif %}
