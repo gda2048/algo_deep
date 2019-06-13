@@ -168,6 +168,12 @@ def lecture(request, pk):
 
 
 @verified_email_required
+def list_courses(request, *args):
+    courses = Course.objects.all()
+    return render(request, "list_course.html", {'courses': courses})
+
+
+@verified_email_required
 def quiz(request, pk):
     try:
         quiz_pk = Quiz.objects.get(pk=pk)
