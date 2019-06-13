@@ -199,6 +199,15 @@ def quiz(request, pk):
     return render(request, "quiz.html", {"quiz": q, 'error': '', 'user_ans': ''})
 
 
+@verified_email_required
+def course(request, pk):
+    try:
+        course_pk = Course.objects.get(pk=pk)
+    except Course.DoesNotExist:
+        raise Http404("Нет такого курса")
+    return render(request, "course.html", {"course": course_pk, 'error': '', 'user_ans': ''})
+
+
 class FacebookLogin(SocialLoginView):
     adapter_class = FacebookOAuth2Adapter
 
