@@ -85,4 +85,40 @@
   width: 40% !important;
 }
 
+.w-30 {
+  width: 30% !important;
+}
+
+.social-btn .btn {
+        margin: 10px 0;
+        font-size: 15px;
+        text-align: left; 
+        line-height: 24px;       
+    }
+	.social-btn .btn i {
+		float: left;
+		margin: 4px 15px  0 5px;
+        min-width: 15px;
+	}
+	
+.or-seperator {
+    border-top: 1px solid black;
+}
+.or-seperator i {
+        padding: 0 10px;
+        position: relative;
+        top: -15px;
+        z-index: 1;
+		background-color: rgb(238, 222, 155);
+    }
+	
+.container-sep {
+	margin-right: auto;
+    margin-left: auto;
+}
+
+.mt-temp {
+	margin-top: 5%;
+}
+
  .big-checkbox {width: 30px; height: 30px;}
