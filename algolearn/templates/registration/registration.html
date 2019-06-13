@@ -24,12 +24,12 @@
     </nav>
 
 	<div class = "container w-25">
-		<h2 class = "mt-4 text-center">Sign up</h2>
+		<h2 class = "mt-4 text-center">Регистрация</h2>
 		<form class = "reg-form mt-4" method="post">
 			{% csrf_token %}
 			{{ form.as_p }}
 			<div class = "text-center">
-				<button class="btn bg-algolearn-red text-algolearn-grey" type="submit">Sign up</button>
+				<button class="btn bg-algolearn-red text-algolearn-grey" type="submit">Зарегистрироваться</button>
 			</div>
 		</form>
 	</div>
