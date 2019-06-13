@@ -2,20 +2,24 @@
 
 {% load i18n %}
 
-{% block head_title %}{% trans "Зарегестрироваться" %}{% endblock %}
+{% block head_title %}{% trans "Регистрация" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Зарегестрироваться" %}</h1>
+<div class = "container w-25">
+	<h1 class = "text-center">{% trans "Регистрация" %}</h1>
 
-<p>{% blocktrans %} Уже есть аккаунт? <a href="{{ login_url }}">Войдите</a>{% endblocktrans %}</p>
+	<p>{% blocktrans %} Уже есть аккаунт? <a href="{{ login_url }}">Войдите</a>{% endblocktrans %}</p>
 
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button class="btn bg-algolearn-red text-algolearn-grey" type="submit">{% trans "Sign Up" %} </button>
-</form>
+	<form class="signup text-left reg-form mt-4" id="signup_form" method="post" action="{% url 'account_signup' %}">
+	  {% csrf_token %}
+	  {{ form.as_p }}
+	  {% if redirect_field_value %}
+	  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+	  {% endif %}
+	  <div class = "text-center">
+		<button class="btn bg-algolearn-red text-algolearn-grey" type="submit">{% trans "Зарегестрироваться" %} </button>
+	  </div>
+	</form>
+</div>
 
 {% endblock %}
