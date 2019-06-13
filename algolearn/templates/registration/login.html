@@ -8,6 +8,7 @@
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/algolearn.css' %}" type="text/css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--<link href="css/aos.css" rel="stylesheet"> SCROLLER-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -24,20 +25,22 @@
 
     <br>
     <!-- templates/registration/login.html -->
-    <h2>Войти</h2><br>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn bg-algolearn-red text-algolearn-grey" type="submit">войти</button>
-    </form>
-    <br>
-    <h3>Войти c помощью</h3><br>
-    <div>
-    <a href="{% url 'facebook_login' %}" class="btn bg-transparent" ><img alt="Facebook" class="img-responsive w-25 h-25" src="{% static "images/fb.png" %}"></a>
-    <a href="{% url 'google_login' %}" class="btn bg-transparent" ><img alt="Facebook" class="img-responsive w-25 h-25" src="{% static "images/google.png" %}"></a>
-    </div>
-    <br>
-    <a href="{%  url 'account_reset_password' %}">Забыли пароль?</a>
+	<div class="container p-3 mt-4 text-center">
+		<h2>Войти</h2><br>
+		<form class="form-m" method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button class="btn bg-algolearn-navbar text-algolearn-grey mt-2" type="submit">войти</button>
+		</form>
+		<div class = "container-sep w-25 mt-temp bg-algolearn-grey"><div class="bg-algolearn-yellow w-100 or-seperator"><i>или</i></div></div>
+		<br>
+		<div class="container social-btn w-30">
+			<a href="{% url 'facebook_login' %}" class="btn btn-primary btn-block" ><i class="fa fa-facebook"></i> Войти с помощью <b>Facebook</b></a>
+			<a href="{% url 'google_login' %}" class="btn btn-danger btn-block" ><i class="fa fa-google"></i> Войти с помощью <b>Google</b></a>
+		</div>
+		<br>
+		<a href="{%  url 'account_reset_password' %}">Забыли пароль?</a>
+	</div>
 </div>
 <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
