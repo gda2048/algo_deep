@@ -101,3 +101,6 @@ class Solution(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     res = models.IntegerField('Результат', default=0)
+
+    def __str__(self):
+        return str(self.user.name)+' '+str(self.quiz.name)
