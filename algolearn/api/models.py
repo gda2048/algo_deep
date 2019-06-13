@@ -94,3 +94,6 @@ class ChatBot(models.Model):
         db_table = 'telebot'
         verbose_name = 'бот'
         verbose_name_plural = 'боты'
+
+# class Solution(models.model):
+  
