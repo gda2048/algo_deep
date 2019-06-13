@@ -159,6 +159,15 @@ def alogin(request, *args):
 
 
 @verified_email_required
+def lecture(request, pk):
+    try:
+        l = Theory.objects.get(pk=pk)
+    except Quiz.DoesNotExist:
+        raise Http404("Нет такой лекции")
+    return render(request, "lecture.html", {"lecture": l, 'course': l.course.id})
+
+
+@verified_email_required
 def quiz(request, pk):
     try:
         quiz_pk = Quiz.objects.get(pk=pk)
@@ -216,11 +225,8 @@ def quizes(request, pk):
 
 @verified_email_required
 def lectures(request, pk):
-    try:
-        course_pk = Course.objects.get(pk=pk)
-    except Course.DoesNotExist:
-        raise Http404("Нет такого курса")
-    return render(request, "course.html", {"course": course_pk})
+    q_es = Theory.objects.filter(course_id=pk)
+    return render(request, "lectures.html", {"lectures": q_es, "course": pk})
 
 
 class FacebookLogin(SocialLoginView):

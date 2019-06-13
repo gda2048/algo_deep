@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Quiz</title>
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/code.css' %}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}" type="text/css">
@@ -37,7 +37,7 @@
 <body class="bg-algolearn-grey">
 
 
-<div class="min-vh-100 bg-algolearn-yellow container-fluid text-center">
+<div class="min-vh-100 bg-algolearn-yellow container-fluid">
 
     <nav class="navbar bg-algolearn-navbar sticky-top row">
         <div class="container-fluid font-algolearn-arial">
@@ -46,27 +46,36 @@
             </a>
 
             <div class="container offset-lg-5 col-lg-2 col-auto text-algolearn-red bg-algolearn-grey rounded-pill text-center">
-                <a href="{% url 'course' pk=course %}" class="nav-link">К курсу</a>
+                <a href="{% url 'lectures' pk=course %}" class="nav-link">Ко всем теоретическим заданиям</a>
             </div>
-
-
-        </div>
     </nav>
 
-    <br><h1>Лекции</h1><br>
-    {% for el in lectures %}
-        <div class="offset-3 col-6">
-            <br>
-            <a href="{% url 'lecture' pk=el.id %}"
-               class="bg-algolearn-navbar btn btn-primary btn-lg col" role="button" aria-pressed="true">{{ el.name }}</a>
-        </div>
-    {% endfor %}
-
+    <div class="jumbotron bg-transparent text-center" data-aos="zoom-out-down"
+         data-aos-anchor-placement="top-center">
+        <h1><strong>{{ lecture.name }}</strong></h1>
+        <div><h3>{{ lecture.description }}</h3></div>
+        <br>
+        <br>
+        {% if lecture.theory_link %}  {{ lecture.link_description }}: {{ lecture.theory_link }} {% endif %}
+    </div>
 </div>
 
 
 <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/code.js' %}"></script>
+<script src="{% static 'js/javascript.js' %}"></script>
+<script src="{% static 'src/ace.js' %}"></script>
+<script>
+    let editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/python");
+    editor.resize()
 
+    let textarea = $('input[name="editor"]');
+    editor.getSession().on("change", function () {
+        textarea.val(editor.getSession().getValue());
+    });
+</script>
 </body>
 </html>
