@@ -164,21 +164,34 @@ def quiz(request, pk):
         quiz_pk = Quiz.objects.get(pk=pk)
         q = quiz_pk.questions['questions'][0]
         if request.method == 'POST':
-
             if quiz_pk.questions['questions'][0]['type'] == 'code':
                 user_ans = {"answers": [{"answer": [request.POST['editor']]}]}
                 try:
                     res = coderunner.Checker(quiz_pk.questions, quiz_pk.answers, user_ans)
-                    print(res.res)
                     if res.res==[-1]:
                         return render(request, "quiz.html",
                                       {"quiz": q, 'error': 'Ошибка в вашем коде', 'user_ans': request.POST['editor']})
                     if res.res==[int(quiz_pk.answers['answers'][0]['score']) * len(quiz_pk.answers['answers'][0]['answer'])]:
                         return render(request, "quiz.html",
-                                      {"quiz": q, 'error': 'Идеально '+str(res.res[0])+' очков получено', 'user_ans': request.POST['editor']})
+                                      {"quiz": q, 'error': 'Идеально '+str(res.res[0])+' scores получено', 'user_ans': request.POST['editor']})
                 except TimeoutError:
                     return render(request, "quiz.html", {"quiz": q, 'error': 'TIME LIMIT', 'user_ans': request.POST['editor']})
-
+            if quiz_pk.questions['questions'][0]['type'] in ['checkbox', 'radio']:
+                user_ans = {"answers": [{"answer": request.POST.getlist('checks')}]}
+                res = coderunner.Checker(quiz_pk.questions, quiz_pk.answers, user_ans)
+                if res.res == [-1]:
+                    return render(request, "quiz.html",
+                                  {"quiz": q, 'error': 'Ошибка в вашем коде', 'user_ans': ''})
+                if res.res == [int(quiz_pk.answers['answers'][0]['score'])]:
+                    return render(request, "quiz.html",
+                                  {"quiz": q, 'error': 'Идеально ' + str(res.res[0]) + ' scores получено',
+                                   'user_ans': ''})
+            if quiz_pk.questions['questions'][0]['type'] == 'text':
+                user_ans = {"answers": [{"answer": [request.POST['text']]}]}
+                res = coderunner.Checker(quiz_pk.questions, quiz_pk.answers, user_ans)
+                if res.res == [int(quiz_pk.answers['answers'][0]['score'])]:
+                    print(1)
+                    return render(request, "quiz.html", {"quiz": q, 'error': 'Идеально ' + str(res.res[0]) + ' scores получено','user_ans': ''})
 
             return render(request, "quiz.html", {"quiz": q, 'error': 'Еще стоит поработать', 'user_ans': ''})
     except Quiz.DoesNotExist:

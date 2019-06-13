@@ -72,8 +72,8 @@
                         <br>
                         {% for el in quiz.answer %}
                             <div class="form-check offset-5">
-                                <input class="form-check-input" type="checkbox" id="{{ forloop.counter0 }}">
-                                <label class="form-check-label" for="{{ forloop.counter0 }}">
+                                <input class="form-check-input" type="checkbox" id="{{ el }}"  value="{{ el }}"  name="checks">
+                                <label class="form-check-label" for="{{ el }}">
                                     <h5> &nbsp; {{ el }} </h5>
                                 </label>
                             </div>
@@ -92,10 +92,8 @@
                         <br>
                         {% for el in quiz.answer %}
                             <div class="form-check offset-5">
-                                <label class="form-check-label" for="{{ forloop.counter0 }}">
-                                    <input class="form-check-input" type="radio" id="{{ forloop.counter0 }}"
-                                           name="radio">  <h5> &nbsp; {{ el }} </h5>
-                                </label>
+                                <input class="form-check-input" type="radio" id="{{ el }}" value="{{ el }}"  name="checks">
+                                <label class="form-check-label" for="{{ el }}"> <h5> &nbsp; {{ el }} </h5> </label>
                             </div>
                         {% endfor %}
                         <br>
@@ -111,7 +109,7 @@
                         <br>
                         <div class="form-group">
                             <label for="0"></label>
-                            <input type="text" class="form-control" id="0">
+                            <input type="text" class="form-control" name="text" id="text" id="0">
                         </div>
                         <br>
                         <input class="bg-algolearn-navbar btn btn-lg btn-success offset-5" type="submit"
