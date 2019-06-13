@@ -1,3 +1,8 @@
+a{
+	color: rgba(36, 136, 136, 1);
+}
+
+
 .h-20 {
     height: 20%;
 }
@@ -129,6 +134,8 @@
 .w-300-px {
 	width: 300px;
 }
+
+
 
 .reg-form ul {
 	display: none;
