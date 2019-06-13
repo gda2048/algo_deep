@@ -95,5 +95,9 @@ class ChatBot(models.Model):
         verbose_name = 'бот'
         verbose_name_plural = 'боты'
 
-# class Solution(models.model):
-  
+
+class Solution(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    res = models.IntegerField('Результат', default=0)
