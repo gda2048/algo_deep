@@ -16,6 +16,7 @@ from django.dispatch import receiver
 from .serializers import CourseSerializer, TheorySerializer, QuizSerializer, BotSerializer
 import json
 import requests
+import coderunner
 
 
 class CourseList(generics.ListAPIView):
@@ -157,12 +158,32 @@ def alogin(request, *args):
     return redirect("/login")
 
 
+@verified_email_required
 def quiz(request, pk):
     try:
         quiz_pk = Quiz.objects.get(pk=pk)
+        q = quiz_pk.questions['questions'][0]
+        if request.method == 'POST':
+
+            if quiz_pk.questions['questions'][0]['type'] == 'code':
+                user_ans = {"answers": [{"answer": [request.POST['editor']]}]}
+                try:
+                    res = coderunner.Checker(quiz_pk.questions, quiz_pk.answers, user_ans)
+                    print(res.res)
+                    if res.res==[-1]:
+                        return render(request, "quiz.html",
+                                      {"quiz": q, 'error': 'Ошибка в вашем коде', 'user_ans': request.POST['editor']})
+                    if res.res==[int(quiz_pk.answers['answers'][0]['score']) * len(quiz_pk.answers['answers'][0]['answer'])]:
+                        return render(request, "quiz.html",
+                                      {"quiz": q, 'error': 'Идеально '+str(res.res[0])+' очков получено', 'user_ans': request.POST['editor']})
+                except TimeoutError:
+                    return render(request, "quiz.html", {"quiz": q, 'error': 'TIME LIMIT', 'user_ans': request.POST['editor']})
+
+
+            return render(request, "quiz.html", {"quiz": q, 'error': 'Еще стоит поработать', 'user_ans': ''})
     except Quiz.DoesNotExist:
         raise Http404("Нет такого теста")
-    return render(request, "quiz.html", {"quiz": quiz_pk})
+    return render(request, "quiz.html", {"quiz": q, 'error': '', 'user_ans': ''})
 
 
 class FacebookLogin(SocialLoginView):

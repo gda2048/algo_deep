@@ -6,21 +6,155 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/code.css' %}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/algolearn.css' %}" type="text/css">
     <!--<link href="css/aos.css" rel="stylesheet"> SCROLLER-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <style>
 
+        input[type=checkbox] {
+            /* Double-sized Checkboxes */
+            -ms-transform: scale(2); /* IE */
+            -moz-transform: scale(2); /* FF */
+            -webkit-transform: scale(2); /* Safari and Chrome */
+            -o-transform: scale(2); /* Opera */
+            padding: 10px;
+        }
+
+        input[type=radio] {
+            /* Double-sized Checkboxes */
+            -ms-transform: scale(2); /* IE */
+            -moz-transform: scale(2); /* FF */
+            -webkit-transform: scale(2); /* Safari and Chrome */
+            -o-transform: scale(2); /* Opera */
+            padding: 10px;
+        }
+    </style>
 </head>
 
 <body class="bg-algolearn-grey">
 
 
-{{ quiz.answers }}
+{% if error %}
+    <div class="alert alert-primary alert-dismissible fade show mx-5" role="alert">
+        {{ error }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+{% endif %}
+
+<div class="min-vh-100 bg-algolearn-yellow container-fluid">
+
+    <nav class="navbar bg-algolearn-navbar sticky-top row">
+        <div class="container-fluid font-algolearn-arial">
+            <a href="{% url 'main' %}" class="navbar-brand col-12 col-sm-4 col-md-4 col-lg-2">
+                <img alt="logo" class="img-fluid mw-100" src="{% static 'images/logo.png' %}">
+            </a>
+
+            <div class="container offset-lg-5 col-lg-2 col-auto text-algolearn-red bg-algolearn-grey rounded-pill text-center">
+                <a href="{% url 'logout' %}" class="nav-link">TODO к курсу</a>
+            </div>
+
+
+        </div>
+    </nav>
+
+    <div class="jumbotron bg-transparent text-center" data-aos="zoom-out-down" data-aos-anchor-placement="top-center">
+        <div class="row my-5">
+            <div class="text-left offset-2 col-8">
+                {% if quiz.type == 'checkbox' %}
+                    <form class="form" method="POST">
+                        {% csrf_token %}
+                        <div><h1>{{ quiz.task }}</h1></div>
+                        <br>
+                        {% for el in quiz.answer %}
+                            <div class="form-check offset-5">
+                                <input class="form-check-input" type="checkbox" id="{{ forloop.counter0 }}">
+                                <label class="form-check-label" for="{{ forloop.counter0 }}">
+                                    <h5> &nbsp; {{ el }} </h5>
+                                </label>
+                            </div>
+                        {% endfor %}
+                        <br>
+                        <input class="bg-algolearn-navbar btn btn-lg btn-success offset-5" type="submit"
+                               value="Проверить">
+                    </form>
+                {% endif %}
+
+
+                {% if quiz.type == 'radio' %}
+                    <form class="form" method="POST">
+                        {% csrf_token %}
+                        <div><h1>{{ quiz.task }}</h1></div>
+                        <br>
+                        {% for el in quiz.answer %}
+                            <div class="form-check offset-5">
+                                <label class="form-check-label" for="{{ forloop.counter0 }}">
+                                    <input class="form-check-input" type="radio" id="{{ forloop.counter0 }}"
+                                           name="radio">  <h5> &nbsp; {{ el }} </h5>
+                                </label>
+                            </div>
+                        {% endfor %}
+                        <br>
+                        <input class="bg-algolearn-navbar btn btn-lg btn-success offset-5" type="submit"
+                               value="Проверить">
+                    </form>
+                {% endif %}
+
+                {% if quiz.type == 'text' %}
+                    <form class="form" method="POST">
+                        {% csrf_token %}
+                        <div><h1>{{ quiz.task }}</h1></div>
+                        <br>
+                        <div class="form-group">
+                            <label for="0"></label>
+                            <input type="text" class="form-control" id="0">
+                        </div>
+                        <br>
+                        <input class="bg-algolearn-navbar btn btn-lg btn-success offset-5" type="submit"
+                               value="Проверить">
+                    </form>
+                {% endif %}
+
+                {% if quiz.type == 'code' %}
+                    <form class="form" method="POST">
+                        {% csrf_token %}
+                        <div><h1>{{ quiz.task }}</h1></div>
+                        <br>
+                        <label for="editor"></label>
+                        <div id="editor" style="font-size: 20px; height: 400px;">{{ user_ans }}</div>
+                        <input name="editor" type="hidden" />
+                        <br>
+                        <input class="bg-algolearn-navbar btn btn-lg btn-success offset-5" type="submit"
+                               value="Проверить">
+                    </form>
+                {% endif %}
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/code.js' %}"></script>
+<script src="{% static 'js/javascript.js' %}"></script>
+<script src="{% static 'src/ace.js' %}"></script>
+<script>
+    let editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/python");
+    editor.resize()
 
+    let textarea = $('input[name="editor"]');
+    editor.getSession().on("change", function () {
+        textarea.val(editor.getSession().getValue());
+    });
+</script>
 </body>
 </html>
