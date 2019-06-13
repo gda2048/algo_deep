@@ -10,8 +10,8 @@
 {% if form.accounts %}
 <p>{% blocktrans %} Вы сможете входить в этот аккаунт используя следующие привязки: {% endblocktrans %}</p>
 
-
-<form method="post" action="{% url 'socialaccount_connections' %}">
+<hr class = "w-25">
+<form class = "list-group" method="post" action="{% url 'socialaccount_connections' %}">
 {% csrf_token %}
 
 <fieldset>
@@ -24,26 +24,30 @@
 <div>
 <label for="id_account_{{ base_account.id }}">
 <input id="id_account_{{ base_account.id }}" type="radio" name="account" value="{{ base_account.id }}"/>
-<span class="socialaccount_provider {{ base_account.provider }} {{ account.get_brand.id }}">{{account.get_brand.name}}</span>
-{{ account }}
+<span for="id_account_{{ base_account.id }}" class="list-group-item socialaccount_provider {{ base_account.provider }} {{ account.get_brand.id }}">{{account.get_brand.name}}: {{ account }}</span>
+
 </label>
 </div>
 {% endwith %}
 {% endfor %}
 
+<hr class = "w-25">
+
 <div>
-<button class="btn bg-algolearn-red text-algolearn-grey" type="submit">{% trans 'Remove' %}</button>
+<button class="btn bg-algolearn-red mt-3 text-algolearn-grey" type="submit">{% trans 'Удалить' %}</button>
 </div>
 
 </fieldset>
 
 </form>
 
+<div class = "container-sep w-300-px mt-temp-2 bg-algolearn-grey"><div class="bg-algolearn-yellow w-100 or-seperator"><i>или</i></div></div>
+
 {% else %}
-<p>{% trans 'У вас еще нет привязок к этому акканута' %}</p>
+<p>{% trans 'У вас еще нет привязок' %}</p>
 {% endif %}
 
-<h2>{% trans 'Добавить привязку к стороннему ресурсу' %}</h2>
+<h2>{% trans 'Добавить' %}</h2>
 
 <ul class="socialaccount_providers">
 {% include "socialaccount/snippets/provider_list.html" with process="connect" %}
