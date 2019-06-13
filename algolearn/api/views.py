@@ -170,33 +170,33 @@ def quiz(request, pk):
                     res = coderunner.Checker(quiz_pk.questions, quiz_pk.answers, user_ans)
                     if res.res==[-1]:
                         return render(request, "quiz.html",
-                                      {"quiz": q, 'error': 'Ошибка в вашем коде', 'user_ans': request.POST['editor']})
+                                      {"quiz": q, 'error': 'Ошибка в вашем коде', 'user_ans': request.POST['editor'], 'course': quiz_pk.course.id})
                     if res.res==[int(quiz_pk.answers['answers'][0]['score']) * len(quiz_pk.answers['answers'][0]['answer'])]:
                         return render(request, "quiz.html",
-                                      {"quiz": q, 'error': 'Идеально '+str(res.res[0])+' scores получено', 'user_ans': request.POST['editor']})
+                                      {"quiz": q, 'error': 'Идеально '+str(res.res[0])+' scores получено', 'user_ans': request.POST['editor'], 'course': quiz_pk.course.id})
                 except TimeoutError:
-                    return render(request, "quiz.html", {"quiz": q, 'error': 'TIME LIMIT', 'user_ans': request.POST['editor']})
+                    return render(request, "quiz.html", {"quiz": q, 'error': 'TIME LIMIT', 'user_ans': request.POST['editor'], 'course': quiz_pk.course.id})
             if quiz_pk.questions['questions'][0]['type'] in ['checkbox', 'radio']:
                 user_ans = {"answers": [{"answer": request.POST.getlist('checks')}]}
                 res = coderunner.Checker(quiz_pk.questions, quiz_pk.answers, user_ans)
                 if res.res == [-1]:
                     return render(request, "quiz.html",
-                                  {"quiz": q, 'error': 'Ошибка в вашем коде', 'user_ans': ''})
+                                  {"quiz": q, 'error': 'Ошибка в вашем коде', 'user_ans': '', 'course': quiz_pk.course.id})
                 if res.res == [int(quiz_pk.answers['answers'][0]['score'])]:
                     return render(request, "quiz.html",
                                   {"quiz": q, 'error': 'Идеально ' + str(res.res[0]) + ' scores получено',
-                                   'user_ans': ''})
+                                   'user_ans': '', 'course': quiz_pk.course.id})
             if quiz_pk.questions['questions'][0]['type'] == 'text':
                 user_ans = {"answers": [{"answer": [request.POST['text']]}]}
                 res = coderunner.Checker(quiz_pk.questions, quiz_pk.answers, user_ans)
                 if res.res == [int(quiz_pk.answers['answers'][0]['score'])]:
                     print(1)
-                    return render(request, "quiz.html", {"quiz": q, 'error': 'Идеально ' + str(res.res[0]) + ' scores получено','user_ans': ''})
+                    return render(request, "quiz.html", {"quiz": q, 'error': 'Идеально ' + str(res.res[0]) + ' scores получено','user_ans': '', 'course': quiz_pk.course.id})
 
-            return render(request, "quiz.html", {"quiz": q, 'error': 'Еще стоит поработать', 'user_ans': ''})
+            return render(request, "quiz.html", {"quiz": q, 'error': 'Еще стоит поработать', 'user_ans': '', 'course': quiz_pk.course.id})
     except Quiz.DoesNotExist:
         raise Http404("Нет такого теста")
-    return render(request, "quiz.html", {"quiz": q, 'error': '', 'user_ans': ''})
+    return render(request, "quiz.html", {"quiz": q, 'error': '', 'user_ans': '', 'course': quiz_pk.course.id})
 
 
 @verified_email_required
@@ -206,6 +206,21 @@ def course(request, pk):
     except Course.DoesNotExist:
         raise Http404("Нет такого курса")
     return render(request, "course.html", {"course": course_pk, 'error': '', 'user_ans': ''})
+
+
+@verified_email_required
+def quizes(request, pk):
+    q_es = Quiz.objects.filter(course_id=pk)
+    return render(request, "quizes.html", {"quizes": q_es, "course": pk})
+
+
+@verified_email_required
+def lectures(request, pk):
+    try:
+        course_pk = Course.objects.get(pk=pk)
+    except Course.DoesNotExist:
+        raise Http404("Нет такого курса")
+    return render(request, "course.html", {"course": course_pk})
 
 
 class FacebookLogin(SocialLoginView):

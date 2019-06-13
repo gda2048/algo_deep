@@ -116,7 +116,7 @@
                         <small class="d-md-none">{{course.description}}</small>
                     </div>
                     <br>
-                    <a href="#" class="btn btn-light btn-border-algolearn-green">Начать курс</a>
+                    <a href="{% url 'course' pk=course.id %}" class="btn btn-light btn-border-algolearn-green">Начать курс</a>
                 </footer>
             </div>
             {% endfor %}

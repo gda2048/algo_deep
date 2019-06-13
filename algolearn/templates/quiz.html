@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Quiz</title>
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/code.css' %}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}" type="text/css">
@@ -55,7 +55,7 @@
             </a>
 
             <div class="container offset-lg-5 col-lg-2 col-auto text-algolearn-red bg-algolearn-grey rounded-pill text-center">
-                <a href="{% url 'logout' %}" class="nav-link">TODO к курсу</a>
+                <a href="{% url 'quizes' pk=course %}" class="nav-link">Ко всем практическим заданиям</a>
             </div>
 
 

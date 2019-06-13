@@ -36,7 +36,8 @@
 
 <body class="bg-algolearn-grey">
 
-<div class="min-vh-100 bg-algolearn-yellow container-fluid">
+
+<div class="min-vh-100 bg-algolearn-yellow container-fluid text-center">
 
     <nav class="navbar bg-algolearn-navbar sticky-top row">
         <div class="container-fluid font-algolearn-arial">
@@ -44,46 +45,23 @@
                 <img alt="logo" class="img-fluid mw-100" src="{% static 'images/logo.png' %}">
             </a>
 
+            <div class="container offset-lg-5 col-lg-2 col-auto text-algolearn-red bg-algolearn-grey rounded-pill text-center">
+                <a href="{% url 'course' pk=course %}" class="nav-link">К курсу</a>
+            </div>
+
+
         </div>
     </nav>
-    <div class="row">
-        <div class="col-4">
-            <br>
-            <div class="card rounded  bg-transparent border-0 text-center">
-                <div class="card-header w-100 border-0 bg-transparent h-20 d-flex align-items-center justify-content-center">
-                    <h1 class="d-none d-md-block">{{ course.name }}</h1>
-                    <h4 class="d-md-none">{{ course.name }}</h4>
-                </div>
-                <div class="card-body h-50">
-                    <img class="card-img-top mw-100 mh-100 h-auto mb-5" src={{ course.photo }}>
-                </div>
-                <footer class="w-100 h-30">
-                    <div class="card-text">
-                        <h2 class="d-none d-md-block">Ожидаемое время прохождения: {{ course.time }} ч.</h2>
-                        <h5 class="d-md-none">Ожидаемое время прохождения: {{ course.time }} ч.</h5>
-                    </div>
-                    <br>
-                </footer>
-            </div>
-        </div>
-        <div class="col-8 text-center">
-            <h1><strong>Описание</strong></h1><br>
-            <h2>{{ course.description }}</h2>
-            <div class="offset-3 col-6">
-                <br>
-                <a href="{% url 'lectures' pk=course.id %}"
-                   class="bg-algolearn-navbar btn btn-primary btn-lg col" role="button" aria-pressed="true">Теория</a>
-            </div>
-            <br>
-            <div class="offset-3 col-6">
-                <a href="{% url 'quizes' pk=course.id %}"
-                   class="bg-algolearn-navbar btn btn-primary btn-lg col" role="button" aria-pressed="true">Практика</a>
-            </div>
-        </div>
-    </div>
 
+    <br><h1>Практические задания</h1><br>
+    {% for el in quizes %}
+        <div class="offset-3 col-6">
+            <br>
+            <a href="{% url 'quiz' pk=el.id %}"
+               class="bg-algolearn-navbar btn btn-primary btn-lg col" role="button" aria-pressed="true">{{ el.name }}</a>
+        </div>
+    {% endfor %}
 
-</div>
 </div>
 
 

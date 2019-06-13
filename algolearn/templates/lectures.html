@@ -36,6 +36,16 @@
 
 <body class="bg-algolearn-grey">
 
+
+{% if error %}
+    <div class="alert alert-primary alert-dismissible fade show mx-5" role="alert">
+        {{ error }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+{% endif %}
+
 <div class="min-vh-100 bg-algolearn-yellow container-fluid">
 
     <nav class="navbar bg-algolearn-navbar sticky-top row">
@@ -44,51 +54,32 @@
                 <img alt="logo" class="img-fluid mw-100" src="{% static 'images/logo.png' %}">
             </a>
 
+            <div class="container offset-lg-5 col-lg-2 col-auto text-algolearn-red bg-algolearn-grey rounded-pill text-center">
+                <a href="{% url 'logout' %}" class="nav-link">TODO к курсу</a>
+            </div>
+
+
         </div>
     </nav>
-    <div class="row">
-        <div class="col-4">
-            <br>
-            <div class="card rounded  bg-transparent border-0 text-center">
-                <div class="card-header w-100 border-0 bg-transparent h-20 d-flex align-items-center justify-content-center">
-                    <h1 class="d-none d-md-block">{{ course.name }}</h1>
-                    <h4 class="d-md-none">{{ course.name }}</h4>
-                </div>
-                <div class="card-body h-50">
-                    <img class="card-img-top mw-100 mh-100 h-auto mb-5" src={{ course.photo }}>
-                </div>
-                <footer class="w-100 h-30">
-                    <div class="card-text">
-                        <h2 class="d-none d-md-block">Ожидаемое время прохождения: {{ course.time }} ч.</h2>
-                        <h5 class="d-md-none">Ожидаемое время прохождения: {{ course.time }} ч.</h5>
-                    </div>
-                    <br>
-                </footer>
-            </div>
-        </div>
-        <div class="col-8 text-center">
-            <h1><strong>Описание</strong></h1><br>
-            <h2>{{ course.description }}</h2>
-            <div class="offset-3 col-6">
-                <br>
-                <a href="{% url 'lectures' pk=course.id %}"
-                   class="bg-algolearn-navbar btn btn-primary btn-lg col" role="button" aria-pressed="true">Теория</a>
-            </div>
-            <br>
-            <div class="offset-3 col-6">
-                <a href="{% url 'quizes' pk=course.id %}"
-                   class="bg-algolearn-navbar btn btn-primary btn-lg col" role="button" aria-pressed="true">Практика</a>
-            </div>
-        </div>
-    </div>
 
-
-</div>
 </div>
 
 
 <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/code.js' %}"></script>
+<script src="{% static 'js/javascript.js' %}"></script>
+<script src="{% static 'src/ace.js' %}"></script>
+<script>
+    let editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/python");
+    editor.resize()
 
+    let textarea = $('input[name="editor"]');
+    editor.getSession().on("change", function () {
+        textarea.val(editor.getSession().getValue());
+    });
+</script>
 </body>
 </html>

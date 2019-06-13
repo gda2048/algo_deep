@@ -44,8 +44,11 @@ urlpatterns += [
     url(r'^api/lectures/(?P<pk>\d+)/$', TheoryDetail.as_view(), name='lectures-detail'),
     url(r'^api/quizes/$', QuizList.as_view(), name='lectures-list'),
     url(r'^api/quizes/(?P<pk>\d+)/$', QuizDetail.as_view(), name='lectures-detail'),
-    url(r'^quiz/(?P<pk>\d+)/$', quiz, name='quizes'),
-    url(r'^course/(?P<pk>\d+)/$', course, name='courses'),
+    url(r'^quiz/(?P<pk>\d+)/$', quiz, name='quiz'),
+    url(r'^quizes/(?P<pk>\d+)/$', quizes, name='quizes'),
+    url(r'^lectures/(?P<pk>\d+)/$', lectures, name='lectures'),
+
+    url(r'^course/(?P<pk>\d+)/$', course, name='course'),
 
 
     url(r'^accounts/login/', alogin, name='login'),
