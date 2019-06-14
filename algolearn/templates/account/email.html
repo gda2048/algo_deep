@@ -9,6 +9,8 @@
 {% if user.emailaddress_set.all %}
 <p>{% trans 'Эти email связаны с этим аккаунтом' %}</p>
 
+<hr class = "w-25">
+
 <form action="{% url 'account_email' %}" class="email_list" method="post">
 {% csrf_token %}
 <fieldset class="blockLabels">
@@ -43,7 +45,7 @@
 <p><strong>{% trans 'Warning:'%}</strong> {% trans "Сейчас у вас нет никакого email.  Вам нужно e-mail для получения уведомлений, сброса пароля ..." %}</p>
 
 {% endif %}
-
+<hr class = "w-25">
     <br>
     <h2>{% trans "Добавить email" %}</h2>
 
