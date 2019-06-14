@@ -56,7 +56,7 @@
         <div><h3>{{ lecture.description }}</h3></div>
         <br>
         <br>
-        {% if lecture.theory_link %}  {{ lecture.link_description }}: {{ lecture.theory_link }} {% endif %}
+        {% if lecture.theory_link %}  <h2><a href = "{{ lecture.theory_link }}">{{ lecture.link_description }}</a></h2> {% endif %}
     </div>
 </div>
 
