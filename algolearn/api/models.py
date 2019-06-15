@@ -103,4 +103,4 @@ class Solution(models.Model):
     res = models.IntegerField('Результат', default=0)
 
     def __str__(self):
-        return str(self.user.name)+' '+str(self.quiz.name)
+        return str(self.user.username)+' '+str(self.quiz.name)

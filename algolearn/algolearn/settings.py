@@ -81,7 +81,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
             'loaders': [
-				'admin_tools.template_loaders.Loader',
+                'admin_tools.template_loaders.Loader',
                 'django.template.loaders.filesystem.Loader',
                 'django.template.loaders.app_directories.Loader',
             ],
@@ -99,18 +99,7 @@ DATABASES = {
         default=config('DATABASE_URL')
     )
 }
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'algo_learn_psql',
-        'USER': 'gda2048',
-        'PASSWORD': 'algolearn',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
-}
-'''
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -174,8 +163,8 @@ SITE_ID = 1
 
 
 SOCIALACCOUNT_PROVIDERS = \
-    {'facebook':
-         {'METHOD': 'oauth2',
+    {'facebook': {
+          'METHOD': 'oauth2',
           'SCOPE': ['email', 'public_profile', 'user_friends'],
           'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
           'FIELDS': [

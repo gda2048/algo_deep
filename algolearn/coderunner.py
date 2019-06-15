@@ -19,6 +19,8 @@ class Checker:
         rs = []
         for el in range(len(self.questions)):
             rs += [sum(self.check(el))]
+        if len(rs) == 1:
+            return rs[0]
         return rs
 
     def print(self):

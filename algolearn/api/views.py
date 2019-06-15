@@ -7,7 +7,6 @@ from rest_auth.social_serializers import TwitterLoginSerializer
 from rest_framework import status, generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.http import Http404, HttpResponseRedirect
 from .models import *
@@ -64,6 +63,10 @@ class BotCreate(generics.CreateAPIView):
     queryset = ChatBot.objects.all()
 
     def create(self, request, *args, **kwargs):
+        """
+        TODO delete this create
+        doesn't work correctly
+        """
         ChatBot.objects.filter(login=request.data['login']).update(bot_id=request.data['bot_id'])
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -105,23 +108,26 @@ def profile(request):
         request.user.first_name = request.POST.get('first_name')
         request.user.last_name = request.POST.get('last_name')
         request.user.username = request.POST.get('username')
-        telebot = request.POST.get('telebot')
-        if telebot:
+        bot = request.POST.get('telebot')
+        if bot:
             try:
-                ChatBot.objects.create(user=request.user, login=telebot).save()
+                ChatBot.objects.create(user=request.user, login=bot).save()
             except Exception:
-                ChatBot.objects.filter(user=request.user).update(login=telebot)
+                ChatBot.objects.filter(user=request.user).update(login=bot)
 
         request.user.save()
         return HttpResponseRedirect("/")
-    telebot = ChatBot.objects.filter(user=request.user)
-    if telebot:
-        return render(request, "profile.html", {"bot": telebot[0].login})
+    bot = ChatBot.objects.filter(user=request.user)
+    if bot:
+        return render(request, "profile.html", {"bot": bot[0].login})
     else:
         return render(request, "profile.html")
 
 
 def checkin(request):
+    """
+    To checkin
+    """
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -133,9 +139,9 @@ def checkin(request):
             data = { "username": username, "email": email, "password1": password1, "password2": password2}
             headers = {'Content-type': 'application/json'}
             try:
-                res = requests.post(url, data=json.dumps(data), headers=headers, timeout=5)
+                requests.post(url, data=json.dumps(data), headers=headers, timeout=5)
             except (requests.exceptions.ConnectionError, requests.exceptions.Timeout):
-                res = "No response or Timeout"
+                pass
             return redirect('/accounts/confirm-email/')
     else:
         form = SignUpForm()
@@ -183,56 +189,46 @@ def list_courses(request, *args):
 def quiz(request, pk):
     try:
         quiz_pk = Quiz.objects.get(pk=pk)
-        q = quiz_pk.questions['questions'][0]
+        que_type = quiz_pk.questions['questions'][0]['type']
+        que_score = int(quiz_pk.answers['answers'][0]['score'])
+        que = quiz_pk.questions['questions'][0]
+        render_dict = {"quiz": que, 'error': '', 'user_ans': '', 'course': quiz_pk.course.id}
         if request.method == 'POST':
-            if quiz_pk.questions['questions'][0]['type'] == 'code':
+            if que_type == 'code':
                 user_ans = {"answers": [{"answer": [request.POST['editor']]}]}
+                render_dict['user_ans'] = request.POST['editor']
                 try:
                     res = coderunner.Checker(quiz_pk.questions, quiz_pk.answers, user_ans)
-                    if res.res==[-1]:
-                        return render(request, "quiz.html",
-                                      {"quiz": q, 'error': 'Ошибка в вашем коде', 'user_ans': request.POST['editor'], 'course': quiz_pk.course.id})
-                    if res.res==[int(quiz_pk.answers['answers'][0]['score']) * len(quiz_pk.answers['answers'][0]['answer'])]:
-                        sol = Solution.objects.filter(user=request.user, quiz=quiz_pk)
-                        if len(sol):
-                            return render(request, "quiz.html",
-                                          {"quiz": q, 'error': "Идеально. Еще одно решение. Баллы засчитаны уже за первое",
-                                           'user_ans': request.POST['editor'], 'course': quiz_pk.course.id})
-                        Solution.objects.create(user=request.user, quiz=quiz_pk, res=res.res[0])
-                        return render(request, "quiz.html",
-                                      {"quiz": q, 'error': 'Идеально '+str(res.res[0])+' scores получено', 'user_ans': request.POST['editor'], 'course': quiz_pk.course.id})
+                    if res.res == -1:
+                        return render(request, "quiz.html", {**render_dict, **{'error': "Ошибка в вашем коде"}})
+                    que_score *= len(quiz_pk.answers['answers'][0]['answer'])
+                    return add_solution(request, quiz_pk, res.res, que_score, render_dict)
                 except TimeoutError:
-                    return render(request, "quiz.html", {"quiz": q, 'error': 'TIME LIMIT', 'user_ans': request.POST['editor'], 'course': quiz_pk.course.id})
-            if quiz_pk.questions['questions'][0]['type'] in ['checkbox', 'radio']:
+                    return render(request, "quiz.html", {**render_dict, **{'error': 'TIME LIMIT'}})
+
+            elif que_type in ['checkbox', 'radio']:
                 user_ans = {"answers": [{"answer": request.POST.getlist('checks')}]}
                 res = coderunner.Checker(quiz_pk.questions, quiz_pk.answers, user_ans)
-                if res.res == [-1]:
-                    return render(request, "quiz.html",
-                                  {"quiz": q, 'error': 'Ошибка в вашем коде', 'user_ans': '', 'course': quiz_pk.course.id})
-                if res.res == [int(quiz_pk.answers['answers'][0]['score'])]:
-                    sol = Solution.objects.filter(user=request.user, quiz=quiz_pk)
-                    if len(sol):
-                        return render(request, "quiz.html",
-                                      {"quiz": q, 'error': 'Идеально. Еще одно решение. Баллы засчитаны уже за первое',
-                                       'user_ans': '', 'course': quiz_pk.course.id})
-                    Solution.objects.create(user=request.user, quiz=quiz_pk, res=res.res[0])
-                    return render(request, "quiz.html",
-                                  {"quiz": q, 'error': 'Идеально ' + str(res.res[0]) + ' scores получено',
-                                   'user_ans': '', 'course': quiz_pk.course.id})
+                return add_solution(request, quiz_pk, res.res, que_score, render_dict)
 
-            if quiz_pk.questions['questions'][0]['type'] == 'text':
+            elif que_type == 'text':
                 user_ans = {"answers": [{"answer": [request.POST['text']]}]}
                 res = coderunner.Checker(quiz_pk.questions, quiz_pk.answers, user_ans)
-                if res.res == [int(quiz_pk.answers['answers'][0]['score'])]:
-                    sol = Solution.objects.filter(user=request.user, quiz=quiz_pk)
-                    if len(sol):
-                        return render(request, "quiz.html", {"quiz": q, 'error': 'Идеально. Еще одно решение. Баллы засчитаны уже за первое','user_ans': '', 'course': quiz_pk.course.id})
-                    Solution.objects.create(user=request.user, quiz=quiz_pk, res=res.res[0])
-                    return render(request, "quiz.html", {"quiz": q, 'error': 'Идеально ' + str(res.res[0]) + ' scores получено','user_ans': '', 'course': quiz_pk.course.id})
-            return render(request, "quiz.html", {"quiz": q, 'error': 'Еще стоит поработать', 'user_ans': '', 'course': quiz_pk.course.id})
+                return add_solution(request, quiz_pk, res.res, que_score, render_dict)
+
     except Quiz.DoesNotExist:
         raise Http404("Нет такого теста")
-    return render(request, "quiz.html", {"quiz": q, 'error': '', 'user_ans': '', 'course': quiz_pk.course.id})
+    return render(request, "quiz.html", render_dict)
+
+
+def add_solution(request, quiz_pk, res, score, render_dict):
+    if res == score:
+        if Solution.objects.filter(user=request.user, quiz=quiz_pk).exists():
+            return render(request, "quiz.html",
+                          {**render_dict, **{'error': 'Идеально. Еще одно решение. Баллы засчитаны уже за первое'}})
+        Solution.objects.create(user=request.user, quiz=quiz_pk, res=res)
+        return render(request, "quiz.html", {**render_dict, **{'error': 'Идеально ' + str(res) + ' scores получено'}})
+    return render(request, "quiz.html", {**render_dict, **{'error': 'Eще строит поработать'}})
 
 
 @verified_email_required
