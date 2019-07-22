@@ -104,3 +104,11 @@ class Solution(models.Model):
 
     def __str__(self):
         return str(self.user.username)+' '+str(self.quiz.name)
+
+    class Meta:
+        """
+        Solution model settings
+        """
+        db_table = 'solution'
+        verbose_name = 'решение'
+        verbose_name_plural = 'решения'

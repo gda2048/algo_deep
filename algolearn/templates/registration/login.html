@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 {% load staticfiles %}
+{% load bootstrap4 %}
+{%  bootstrap_css %}
+{%  bootstrap_javascript jquery='full' %}
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>Войти</title>
-    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/algolearn.css' %}" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -42,7 +44,5 @@
 		<a href="{%  url 'account_reset_password' %}">Забыли пароль?</a>
 	</div>
 </div>
-<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>
 </html>
