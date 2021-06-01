@@ -46,7 +46,7 @@ static3==0.7.0
 timeout-decorator==0.4.1
 typing==3.6.6
 uritemplate==3.0.0
-urllib3==1.25.3
+urllib3==1.26.5
 wcwidth==0.1.7
 whitenoise==3.3.1
 wrapt==1.11.1
